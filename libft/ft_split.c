@@ -1,0 +1,89 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/15 11:07:41 by mvazquez          #+#    #+#             */
+/*   Updated: 2025/12/15 13:22:46 by mvazquez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+static size_t	count_words(char *s, char c)
+{
+	size_t	count;
+	size_t	i;
+
+	count = 0;
+	i = 0;
+	while (s[i])
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+			count++;
+		while (s[i] && s[i] != c)
+			i++;
+	}
+	return (count);
+}
+
+static char	*malloc_word(char *s, char c)
+{
+	size_t	len;
+	size_t	i;
+	char	*word;
+
+	len = 0;
+	while (s[len] && s[len] != c)
+		len++;
+	word = malloc((len + 1) * sizeof(char));
+	i = 0;
+	while (s[i] && s[i] != c)
+	{
+		word[i] = s[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+static void	free_arr(char **arr, size_t i)
+{
+	while (i > 0)
+	{
+		i--;
+		free(arr[i]);
+	}
+	free(arr);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**arr;
+	char	*ptr;
+	size_t	nwords;
+	size_t	i;
+
+	ptr = (char *)s;
+	nwords = count_words(ptr, c);
+	arr = malloc((nwords + 1) * sizeof(char *));
+	if (arr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < nwords)
+	{
+		while (*ptr == c)
+			ptr++;
+		arr[i] = malloc_word(ptr, c);
+		if (arr[i] == NULL)
+			free_arr(arr, i);
+		ptr += ft_strlen(arr[i]) + 1;
+		i++;
+	}
+	arr[nwords] = NULL;
+	return (arr);
+}
