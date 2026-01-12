@@ -6,9 +6,37 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:14:52 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/08 15:43:23 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/12 11:39:45 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
+
+float	compute_disorder(t_stack *stack)
+{
+	int		mistakes;
+	int		total_pairs;
+	t_stack	*i;
+	t_stack	*j;
+
+	mistakes = 0;
+	total_pairs = 0;
+	i = stack;
+	while (i)
+	{
+		j = i->next;
+		while (j)
+		{
+			total_pairs++;
+			if (i->value > j->value)
+				mistakes++;
+			j = j->next;
+		}
+		i = i->next;
+	}
+	ft_printf("%i total pairs and %i mistakes\n", total_pairs, mistakes);
+	return ((float)mistakes / (float)total_pairs);
+}
 
 /*
 function compute_disorder(stack a):
@@ -21,27 +49,3 @@ function compute_disorder(stack a):
                 mistakes += 1
     return mistakes / total_pairs
 */
-#include "push_swap.h"
-
-float   compute_disorder(t_stack *stack)
-{
-    int mistakes;
-    int total_pairs;
-	int	last_i;
-	int	i;
-	int	j;
-
-	mistakes = 0;
-	total_pairs = 0;
-	last_i = stacklast(stack)->index;
-	i = 0;
-	while (i <= last_i)
-	{
-		j = i + 1;
-		while (j <= last_i)
-		{
-			total_pairs++;
-			if (MAKE HELPER TO MAKE STACK INDEXABLE?)
-		}
-    }
-}

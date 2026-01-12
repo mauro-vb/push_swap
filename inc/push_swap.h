@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/08 15:20:55 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/12 11:33:25 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ t_stack	*stacklast(t_stack *stack);
 void	stackadd_front(t_stack **stack, t_stack *new);
 void	stackadd_back(t_stack **stack, t_stack *new);
 
-float   compute_disorder(t_stack *stack);
+float	compute_disorder(t_stack *stack);
 
 #endif
