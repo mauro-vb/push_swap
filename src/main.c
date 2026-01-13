@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/12 13:48:55 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:01:18 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_stack(t_stack *stack, int print_i)
 
 int main(int argc, char **argv)
 {
-	ft_printf("\n\n\n--- TEST ---\n\n");
+	ft_printf("\n\n\n TEST \n\n");
 	ft_printf("\nargc = %i\nargv[0] = \"%s\"\n", argc, argv[0]);
 
 	int	i = 0;
@@ -39,18 +39,19 @@ int main(int argc, char **argv)
 	t_stack *new;
 	while (i < 20)
 	{
-		new = stacknew(i);
+		new = stacknew(rand());
 		stackadd_front(&stack, new);
 		i++;
 	}
+	index_stack(&stack);
 	print_stack(stack, 1);
-	int	swapr = swap(&stack);
-	ft_printf("Swap returns:%i\n", swapr);
+	ra(&stack);
 	print_stack(stack, 1);
-	
-	rotate(&stack, 1);
-	rotate(&stack, 1);
-	ft_printf("double rotate reverse\n");
+	sa(&stack);
+	print_stack(stack, 1);
+	rra(&stack);
+	print_stack(stack, 1);
+	sa(&stack);
 	print_stack(stack, 1);
 	return (0);
 }
