@@ -21,18 +21,14 @@ t_stack	*stacknew(int value)
 		return (NULL);
 	stack->value = value;
 	stack->index = -1;
-	stack->previous = NULL;
-	stack->next = NULL;
+	stack->previous = stack;
+	stack->next = stack;
 	return (stack);
 }
 
 t_stack	*stacklast(t_stack *stack)
 {
-	if (!stack)
-		return (NULL);
-	while (stack->next)
-		stack = stack->next;
-	return (stack);
+	return (stack->previous);
 }
 
 void	stackadd_front(t_stack **stack, t_stack *new)
@@ -40,7 +36,7 @@ void	stackadd_front(t_stack **stack, t_stack *new)
 	if (!stack || !new)
 		return ;
 	new->next = *stack;
-	new->previous = NULL;
+	new->previous = (*stack)->previous;
 	(*stack)->previous = new;
 	*stack = new;
 }
@@ -49,12 +45,10 @@ void	stackadd_back(t_stack **stack, t_stack *new)
 {
 	t_stack	*last;
 
-	if (!stack || !new)
-		return ;
 	last = stacklast(*stack);
 	last->next = new;
 	new->previous = last;
-	(*stack)->previous = NULL;
+	(*stack)->previous = new;
 }
 
 size_t	stacksize(t_stack *head)
@@ -64,12 +58,12 @@ size_t	stacksize(t_stack *head)
 
 	tmp = head;
 	i = 0;
-	while (tmp)
+	while (tmp != head->previous)
 	{
 		tmp = tmp->next;
 		i++;
 	}
-	return (i);
+	return (i + 1);
 }
 
 void	stackdelone(t_stack *stack)
