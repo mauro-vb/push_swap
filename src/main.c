@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/14 13:35:06 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/14 14:41:42 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	print_stack(t_stack *stack, int print_i)
 int main(int argc, char **argv)
 {
 	ft_printf("\n\n\n TEST \n\n");
-	ft_printf("\nargc = %i\nargv[0] = \"%s\"\n", argc, argv[0]);
+	int	check_args_res = check_args(argc, argv);
+	ft_printf("check args returned %i\n", check_args_res);
 
 	int	i = 0;
 	t_stack *stack = stacknew(-1);
@@ -57,5 +58,6 @@ int main(int argc, char **argv)
 	print_stack(stack, 1);
 	sa(&stack);
 	print_stack(stack, 1);
+
 	return (0);
 }
