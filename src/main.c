@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/13 17:01:18 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/14 13:35:06 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 void	print_stack(t_stack *stack, int print_i)
 {
+	t_stack	*initial;
+
 	if (!stack)
 		return ;
 	ft_printf("{");
-	while (stack)
+	initial = stack;
+	while (1)
 	{
 		ft_printf(" %i", stack->value);
 		if (print_i)
 			ft_printf("(%i)", stack->index);
-		if (stack->next)
-			ft_printf(", ");
+		ft_printf(", ");
 		stack = stack->next;
+		if (stack == initial)
+			break ;
 	}
 	ft_printf(" }\n");
 }
