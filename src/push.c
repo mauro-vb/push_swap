@@ -15,36 +15,55 @@
 // Take the first element at the 
 // top of a stack and put it at the top of other stack
 
-static int	push(t_stack **stack_to, t_stack **stack_from)
+static void	push(t_stack **stack_dest, t_stack **stack_src)
 {
-	t_stack	*tmp;
+	t_stack *moving;
+	t_stack	*src_tail;
+	t_stack	*dest_tail;
 
-	if (!stack_from || !*stack_from)
-		return (0);
-	tmp = *stack_from;
-	*stack_from = tmp->next;
-	if (*stack_from)
-		(*stack_from)->previous = NULL;
-	tmp->next = *stack_to;
-	tmp->previous = NULL;
-	if (*stack_to)
-		(*stack_to)->previous = tmp;
-	*stack_to = tmp;
-	return (1);
+	if (!(*stack_src))
+		return ;
+	moving = *stack_src;
+	if (moving == moving->next)
+		*stack_src = NULL;
+	else
+	{
+		src_tail = moving->previous;
+		(*stack_src) = moving->next;
+		(*stack_src)->previous = src_tail;
+		src_tail->next = *stack_src;
+	}
+	if (*stack_dest)
+	{
+		*stack_dest = moving;
+		moving->next = moving;
+		moving->previous = moving;
+	}
+	else
+	{
+		dest_tail = (*stack_dest)->previous;
+		moving->next = *stack_dest;
+		moving->previous = dest_tail;
+		(*stack_dest)->previous = moving;
+		dest_tail->next = moving;
+		*stack_dest = moving;
+	}
 }
 
 int	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!push(stack_a, stack_b))
+	if (!stack_b)
 		return (0);
+	push(stack_a, stack_b);
 	ft_printf("pa\n");
 	return (1);
 }
 
 int	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!push(stack_b, stack_a))
+	if (!stack_a)
 		return (0);
+	push(stack_b, stack_a);
 	ft_printf("pb\n");
 	return (1);
 }

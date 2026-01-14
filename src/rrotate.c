@@ -16,48 +16,31 @@
 // If reverse the last element becomes the first one.
 // Else the first element becomes the last one.
 
-static int	rrotate(t_stack **stack)
+static void	rrotate(t_stack **stack)
 {
-	t_stack	*fst;
-	t_stack	*last;
-	t_stack	*penultim;
-	
-	if (!stack)
-		return (0);
-	fst = *stack;
-	last = stacklast(*stack);
-	if (!fst || !last)
-		return (0);
-	penultim = last->previous;
-	last->next = fst;
-	last->previous = NULL;
-	if (penultim)
-		penultim->next = NULL;
-	*stack = last;
-	return (1);
-
+	if (!(*stack) || (*stack)->previous == *stack)
+		return ;
+	*stack = (*stack)->previous;
 }
 
 int	rra(t_stack **stack_a)
 {
-	if (!rrotate(stack_a))
-		return (0);
+	rrotate(stack_a);
 	ft_printf("rra\n");
 	return (1);
 }
 
 int	rrb(t_stack **stack_b)
 {
-	if (!rrotate(stack_b))
-		return (0);
+	rrotate(stack_b);
 	ft_printf("rrb\n");
 	return (1);
 }
 
 int	rrr(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!rrotate(stack_a) || !rrotate(stack_b))
-		return (0);
+	rrotate(stack_a);
+	rrotate(stack_b);
 	ft_printf("rrr\n");
 	return (1);
 }

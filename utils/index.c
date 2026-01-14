@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:05:34 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/13 16:23:48 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:07:13 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_stack	*get_next_min(t_stack **stack)
 	head = *stack;
 	min = NULL;
 	has_min = 0;
-	while (head)
+	while (1)
 	{
 		if ((head->index == -1) && (!has_min || head->value < min->value))
 		{
@@ -29,6 +29,8 @@ static t_stack	*get_next_min(t_stack **stack)
 			has_min = 1;
 		}
 		head = head->next;
+		if (head == *stack)
+			break ;
 	}
 	return (min);
 }
@@ -36,13 +38,14 @@ static t_stack	*get_next_min(t_stack **stack)
 void	index_stack(t_stack **stack)
 {
 	int		index;
+	int		size;
 	t_stack	*head;
 
 	index = 0;
-	head = get_next_min(stack);
-	while (head)
+	size = stacksize(*stack);
+	while (index < size)
 	{
-		head->index = index++;
 		head = get_next_min(stack);
+		head->index = index++;
 	}
 }
