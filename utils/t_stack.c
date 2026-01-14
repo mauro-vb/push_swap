@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 14:02:16 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/13 16:05:24 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:12:00 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,15 @@ t_stack	*stacklast(t_stack *stack)
 
 void	stackadd_front(t_stack **stack, t_stack *new)
 {
+	t_stack	*tail;
+
 	if (!stack || !new)
 		return ;
+	tail = (*stack)->previous;
 	new->next = *stack;
-	new->previous = (*stack)->previous;
+	new->previous = tail;
 	(*stack)->previous = new;
+	tail->next = new;
 	*stack = new;
 }
 
