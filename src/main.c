@@ -6,14 +6,14 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/15 14:07:40 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:31:23 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	print_stack(t_stack *stack, int print_i)
+void	print_stack(t_stack *stack, int print_i)
 {
 	t_stack	*initial;
 
@@ -74,13 +74,7 @@ int main(int argc, char **argv)
 	stack_b = NULL;
 
 	print_stack(stack, 1);
-	ra(&stack);
-	print_stack(stack, 1);
-	sa(&stack);
-	print_stack(stack, 1);
-	rra(&stack);
-	print_stack(stack, 1);
-	sa(&stack);
+	selection_sort0(&stack, &stack_b);	
 	print_stack(stack, 1);
 
 	return (0);
