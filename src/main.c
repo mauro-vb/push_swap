@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/14 15:50:45 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:07:40 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -54,7 +54,6 @@ static t_stack	*init_stack(char **argv, int argc)
 		stackadd_back(&head, tmp);
 		args++;
 	}
-	print_stack(head, 1);
 	index_stack(&head);
 	return (head);
 }

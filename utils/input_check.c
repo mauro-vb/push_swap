@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:24:48 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/14 15:05:49 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:07:55 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	check_args(int argc, char **argv)
 		return (0);
 	while (*args)
 	{
-		ft_printf("%s\n", *args);
 		if (!is_num(*args))
 			return (0);
 		num = ft_atoi(*args);
