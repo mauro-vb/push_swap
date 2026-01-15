@@ -51,7 +51,7 @@ static t_stack	*init_stack(char **argv, int argc)
 	while (*args)
 	{
 		tmp = stacknew(ft_atoi(*args));
-		stackadd_front(&head, tmp);
+		stackadd_back(&head, tmp);
 		args++;
 	}
 	print_stack(head, 1);
