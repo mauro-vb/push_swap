@@ -37,7 +37,7 @@ void	stackadd_front(t_stack **stack, t_stack *new);
 void	stackadd_back(t_stack **stack, t_stack *new);
 size_t	stacksize(t_stack *head);
 void	index_stack(t_stack **stack);
-int		is_sorted(t_stack *stack)
+int		is_sorted(t_stack *stack);
 
 float	compute_disorder(t_stack *stack);
 
