@@ -6,13 +6,14 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
+/*   Updated: 2026/01/14 15:50:45 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack, int print_i)
+static void	print_stack(t_stack *stack, int print_i)
 {
 	t_stack	*initial;
 
@@ -33,21 +34,46 @@ void	print_stack(t_stack *stack, int print_i)
 	ft_printf(" }\n");
 }
 
+static t_stack	*init_stack(char **argv, int argc)
+{
+	char	**args;
+	t_stack	*head;
+	t_stack	*tmp;
+	//int		i;
+
+	if (argc == 2)
+		args = ft_split(argv[1], ' ');
+	else
+		args = argv + 1;
+	head = stacknew(ft_atoi(*args));
+	tmp = head;
+	args++;
+	while (*args)
+	{
+		tmp = stacknew(ft_atoi(*args));
+		stackadd_front(&head, tmp);
+		args++;
+	}
+	print_stack(head, 1);
+	index_stack(&head);
+	return (head);
+}
+
 int main(int argc, char **argv)
 {
-	ft_printf("\n\n\n TEST \n\n");
-	ft_printf("\nargc = %i\nargv[0] = \"%s\"\n", argc, argv[0]);
+	t_stack	*stack;
+	t_stack	*stack_b;
 
-	int	i = 0;
-	t_stack *stack = stacknew(-1);
-	t_stack *new;
-	while (i < 20)
+	ft_printf("\n\n\n TEST \n\n");
+	if (!check_args(argc, argv))
 	{
-		new = stacknew(rand());
-		stackadd_front(&stack, new);
-		i++;
+		ft_printf("Bad Input...");
+		return (0);
 	}
-	index_stack(&stack);
+	
+	stack = init_stack(argv, argc);
+	stack_b = NULL;
+
 	print_stack(stack, 1);
 	ra(&stack);
 	print_stack(stack, 1);
@@ -57,5 +83,6 @@ int main(int argc, char **argv)
 	print_stack(stack, 1);
 	sa(&stack);
 	print_stack(stack, 1);
+
 	return (0);
 }

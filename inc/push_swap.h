@@ -6,6 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
+/*   Updated: 2026/01/14 14:40:29 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -22,6 +23,12 @@ typedef struct s_stack
     struct s_stack	*previous;
 	struct s_stack	*next;
 }	t_stack;
+
+// input handling and stack init
+
+int	check_args(int argc, char **argv);
+
+// stack 
 
 t_stack *stacknew(int value);
 t_stack	*stacklast(t_stack *stack);
