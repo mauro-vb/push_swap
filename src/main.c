@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/15 15:55:26 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:47:13 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 	stack_b = NULL;
 
 	print_stack(stack, 1);
-	double_selection_sort(&stack, &stack_b);	
+	sort_three(&stack, 1);	
 	print_stack(stack, 1);
 
 	return (0);

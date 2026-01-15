@@ -6,11 +6,72 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:27:39 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/15 16:30:50 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:51:12 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_three(t_stack **stack, int is_a)
+{
+	int head_val;
+	int	tail_val;
+	int	mid_val;
+
+	if (stacksize(*stack) != 3 || is_sorted(*stack))
+		return ;
+	head_val = (*stack)->index;
+	tail_val = (*stack)->previous->index;
+	mid_val = (*stack)->next->index;
+	if (tail_val > head_val&& tail_val > mid_val && head_val > mid_val)
+	{
+		if (is_a)
+			sa(stack);
+		else
+			sb(stack);
+	}
+	else if (head_val > tail_val && head_val > mid_val && mid_val < tail_val)
+	{
+		if (is_a)
+			ra(stack);
+		else
+			rb(stack);	
+	}
+	else if (head_val > tail_val && head_val < mid_val && mid_val > tail_val)
+	{
+		if (is_a)
+			rra(stack);
+		else
+			rrb(stack);	
+	}
+	else if (head_val > tail_val && head_val > mid_val && mid_val > tail_val)
+	{
+		if (is_a)
+		{
+			sa(stack);
+			rra(stack);
+		}
+		else
+		{
+			sb(stack);
+			rrb(stack);
+		}
+	}
+	else if (head_val < tail_val && head_val < mid_val && mid_val > tail_val)
+	{
+		if (is_a)
+		{
+			sa(stack);
+			ra(stack);
+		}
+		else
+		{
+			sb(stack);
+			rb(stack);
+		}
+	}
+		
+}
 
 void	double_selection_sort(t_stack **stack_a, t_stack **stack_b)
 {
