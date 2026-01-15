@@ -18,7 +18,7 @@ int	is_sorted(t_stack *stack)
 
 	if (!stack)
 		return (1);
-	tmp = stack:
+	tmp = stack;
 	while (tmp->next != stack)
 	{
 		if (tmp->value > (tmp->next->value)
@@ -34,7 +34,7 @@ void	bubble_sort(t_stack **stack)
 		return ;
 	while (!is_sorted(*stack))
 	{
-		if ((*stack)->value > (*stack)->next->value)
+		if ((*stack)->value > (*stack)->next->value))
 			sa(stack);
 		ra(stack);
 	}
