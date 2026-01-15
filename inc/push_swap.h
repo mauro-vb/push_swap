@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
 /*   Updated: 2026/01/14 14:40:29 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +37,7 @@ void	stackadd_front(t_stack **stack, t_stack *new);
 void	stackadd_back(t_stack **stack, t_stack *new);
 size_t	stacksize(t_stack *head);
 void	index_stack(t_stack **stack);
+int		is_sorted(t_stack *stack)
 
 float	compute_disorder(t_stack *stack);
 
@@ -55,4 +57,8 @@ int	rr(t_stack **stack_a, t_stack **stack_b);
 int	rra(t_stack **stack_a);
 int	rrb(t_stack **stack_b);
 int	rrr(t_stack **stack_a, t_stack **stack_b);
+
+//simple sort
+
+void	bubble_sort(t_stack	**stack);
 #endif

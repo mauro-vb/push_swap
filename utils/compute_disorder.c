@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:14:52 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/12 11:39:45 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/14 15:11:03 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ float	compute_disorder(t_stack *stack)
 	mistakes = 0;
 	total_pairs = 0;
 	i = stack;
-	while (i)
+	while (1)
 	{
 		j = i->next;
-		while (j)
+		while (j != stack)
 		{
 			total_pairs++;
 			if (i->value > j->value)
@@ -33,8 +33,12 @@ float	compute_disorder(t_stack *stack)
 			j = j->next;
 		}
 		i = i->next;
+		if (i == stack)
+			break ;
 	}
 	ft_printf("%i total pairs and %i mistakes\n", total_pairs, mistakes);
+	if (total_pairs == 0)
+		return 0.0;
 	return ((float)mistakes / (float)total_pairs);
 }
 
