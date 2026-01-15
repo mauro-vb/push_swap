@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/14 14:40:29 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:30:41 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -30,6 +30,7 @@ int	check_args(int argc, char **argv);
 
 // stack 
 
+void	print_stack(t_stack *stack, int index);
 t_stack *stacknew(int value);
 t_stack	*stacklast(t_stack *stack);
 void	stackdelone(t_stack *stack);
@@ -58,7 +59,8 @@ int	rra(t_stack **stack_a);
 int	rrb(t_stack **stack_b);
 int	rrr(t_stack **stack_a, t_stack **stack_b);
 
-//simple sort
+// simple sort
 
 void	bubble_sort(t_stack	**stack);
+void	selection_sort0(t_stack **stack_a, t_stack **stack_b);
 #endif

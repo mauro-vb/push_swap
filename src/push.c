@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:09:19 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/13 15:58:48 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/15 15:26:39 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	push(t_stack **stack_dest, t_stack **stack_src)
 		(*stack_src)->previous = src_tail;
 		src_tail->next = *stack_src;
 	}
-	if (*stack_dest)
+	if (!*stack_dest)
 	{
 		*stack_dest = moving;
 		moving->next = moving;
