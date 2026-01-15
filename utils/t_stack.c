@@ -47,11 +47,12 @@ void	stackadd_front(t_stack **stack, t_stack *new)
 
 void	stackadd_back(t_stack **stack, t_stack *new)
 {
-	t_stack	*last;
+	t_stack	*tmp;
 
-	last = stacklast(*stack);
-	last->next = new;
-	new->previous = last;
+	tmp = (*stack)->previous;
+	new->next = *stack;
+	new->previous = tmp;
+	tmp->next = new;
 	(*stack)->previous = new;
 }
 
