@@ -34,6 +34,37 @@ void	print_stack(t_stack *stack, int print_i)
 	ft_printf(" }\n");
 }
 
+int	handle_flag(char *arg, t_config *config)
+{
+	if (!ft_strncmp("--bench", arg, 8) && ft_strlen(arg) == 7)
+	{
+		*config->bench = 1;
+		return (1);
+	}
+	else if (!ft_strncmp("--adaptive", arg, 11) && ft_strlen(arg) == 10)
+	{
+		*config->mode = MODE_ADAPTIVE;
+		return (1);
+	}
+	else if (!ft_strncmp("--simple", arg, 9) && ft_strlen(arg) == 8)
+	{
+		*config->mode = MODE_SIMPLE;
+		return (1);
+	}
+	else if (!ft_strncmp("--medium", arg, 9) && ft_strlen(arg) == 8)
+	{
+		*config->mode = MODE_MEDIUM;
+		return (1);
+	}
+	else if (!ft_strncmp("--complex", arg, 10) && ft_strlen(arg) == 9)
+	{
+		*config->mode = MODE_COMPLEX;
+		return (1);
+	}
+	else
+		return (0);
+	
+
 int	parse_flags(int argc, char **argv, t_config *config)
 {
 	int	i;
@@ -47,6 +78,8 @@ int	parse_flags(int argc, char **argv, t_config *config)
 		{
 			if (!flagset)
 				if (!handle_flag(argv[i], &config))
+				{
+					write(2, "Flags error\n", 12);
 					return (0);
 				flagset = 1;
 			argv[i] = "";
