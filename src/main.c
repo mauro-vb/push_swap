@@ -34,6 +34,28 @@ void	print_stack(t_stack *stack, int print_i)
 	ft_printf(" }\n");
 }
 
+int	parse_flags(int argc, char **argv, t_config *config)
+{
+	int	i;
+	int	flagset;
+
+	i = 1;
+	flagset = 0;
+	while (i < argc)
+	{
+		if (argv[i][0] == '-' && argv[i][1] == '-')
+		{
+			if (!flagset)
+				if (!handle_flag(argv[i], &config))
+					return (0);
+				flagset = 1;
+			argv[i] = "";
+		}
+		i++;
+	}
+	return (1);
+}
+
 static t_stack	*init_stack(char **argv, int argc)
 {
 	char	**args;
@@ -63,7 +85,7 @@ int main(int argc, char **argv)
 	t_stack	*stack;
 	t_stack	*stack_b;
 
-	ft_printf("\n\n\n TEST \n\n");
+
 	if (!check_args(argc, argv))
 	{
 		ft_printf("Bad Input...");
