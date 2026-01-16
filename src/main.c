@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/15 16:48:30 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/16 15:04:26 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -75,6 +75,7 @@ int main(int argc, char **argv)
 
 	print_stack(stack, 1);
 	radix_sort(&stack, &stack_b);	
+	sort_three(&stack, 1);	
 	print_stack(stack, 1);
 
 	return (0);
