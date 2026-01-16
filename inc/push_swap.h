@@ -24,9 +24,24 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
+typedef enum e_mode
+{
+	MODE_ADAPTIVE;
+	MODE_SIMPLE;
+	MODE_MEDIUM;
+	MODE_COMPLEX;
+}	t_mode;
+
+typedef	struct s_config
+{
+	t_mode	mode;
+	int	bench = 0;
+}	t_config;
+
 // input handling and stack init
 
 int	check_args(int argc, char **argv);
+int	parse_flags(int argc, char **argv, t_config *config);
 
 // stack 
 
