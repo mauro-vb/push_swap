@@ -43,11 +43,9 @@ static int	is_num(char *str)
 
 int	check_args(int argc, char **argv)
 {
-	size_t	i;
 	long	num;
 	char	**args;
 
-	i = 0;
 	if (argc == 1)
 		return (0);
 	if (argc == 2)
