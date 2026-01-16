@@ -6,14 +6,14 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/16 15:13:53 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:54:20 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack, int print_i)
+void	print_stack(t_stack *stack, int print_i, int print_curri, int tg_val)
 {
 	t_stack	*initial;
 
@@ -26,6 +26,10 @@ void	print_stack(t_stack *stack, int print_i)
 		ft_printf(" %i", stack->value);
 		if (print_i)
 			ft_printf("(%i)", stack->index);
+		if (print_curri)
+			ft_printf("(%i)", stack->current_i);
+		if (tg_val && stack->target_node)
+			ft_printf("(%i)", stack->target_node->value);
 		ft_printf(", ");
 		stack = stack->next;
 		if (stack == initial)
@@ -70,12 +74,13 @@ int main(int argc, char **argv)
 	}
 	
 	stack = init_stack(argv, argc);
-	stack_b = NULL;
+	stack_b = stacknew(4);
+	stackadd_back(&stack_b, stacknew(9));
+	stackadd_back(&stack_b, stacknew(2));
+	stackadd_back(&stack_b, stacknew(5));
 
-	print_stack(stack, 1);
-	radix_sort(&stack, &stack_b);	
-	sort_three(&stack, 1);	
-	print_stack(stack, 1);
-
+	print_stack(stack, 1, 1, 0);
+	assign_target_node(&stack, &stack_b);
+	print_stack(stack_b, 0, 0, 1);
 	return (0);
 }

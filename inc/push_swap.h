@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/16 15:12:00 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:53:01 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ int	check_args(int argc, char **argv);
 
 // stack 
 
-void	print_stack(t_stack *stack, int index);
+void	print_stack(t_stack *stack, int index, int curr_index, int tn_val);
 t_stack *stacknew(int value);
 t_stack	*stacklast(t_stack *stack);
 void	stackdelone(t_stack *stack);
@@ -74,4 +74,9 @@ int	rrr(t_stack **stack_a, t_stack **stack_b);
 void	selection_sort0(t_stack **stack_a, t_stack **stack_b);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 void	sort_three(t_stack **stack, int is_a);
+
+// 
+t_stack	*smallest_bigger(int value, t_stack **stack_a);
+void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
+
 #endif
