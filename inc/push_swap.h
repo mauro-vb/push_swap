@@ -26,16 +26,16 @@ typedef struct s_stack
 
 typedef enum e_mode
 {
-	MODE_ADAPTIVE;
-	MODE_SIMPLE;
-	MODE_MEDIUM;
-	MODE_COMPLEX;
+	MODE_ADAPTIVE,
+	MODE_SIMPLE,
+	MODE_MEDIUM,
+	MODE_COMPLEX
 }	t_mode;
 
 typedef	struct s_config
 {
 	t_mode	mode;
-	int	bench = 0;
+	int	bench;
 }	t_config;
 
 // input handling and stack init
