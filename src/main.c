@@ -6,14 +6,14 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/16 15:54:20 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:29:38 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack, int print_i, int print_curri, int tg_val)
+void	print_stack(t_stack *stack, int debug)
 {
 	t_stack	*initial;
 
@@ -24,12 +24,8 @@ void	print_stack(t_stack *stack, int print_i, int print_curri, int tg_val)
 	while (1)
 	{
 		ft_printf(" %i", stack->value);
-		if (print_i)
-			ft_printf("(%i)", stack->index);
-		if (print_curri)
-			ft_printf("(%i)", stack->current_i);
-		if (tg_val && stack->target_node)
-			ft_printf("(%i)", stack->target_node->value);
+		if (debug)
+			ft_printf("(%i)", stack->totop_cost);// change here for debug
 		ft_printf(", ");
 		stack = stack->next;
 		if (stack == initial)
@@ -58,6 +54,7 @@ static t_stack	*init_stack(char **argv, int argc)
 		args++;
 	}
 	index_stack(&head);
+	current_index_stack(&head);
 	return (head);
 }
 
@@ -79,8 +76,8 @@ int main(int argc, char **argv)
 	stackadd_back(&stack_b, stacknew(2));
 	stackadd_back(&stack_b, stacknew(5));
 
-	print_stack(stack, 1, 1, 0);
-	assign_target_node(&stack, &stack_b);
-	print_stack(stack_b, 0, 0, 1);
+	assign_totop_cost(&stack);
+	turk_sort(&stack, &stack_b);
+	print_stack(stack, 1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:04:26 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/16 16:00:57 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:24:38 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,23 @@ void	assign_target_node(t_stack **stack_a, t_stack **stack_b)
 		else
 			tmp_b->target_node = smallest_bigger(tmp_b->value, stack_a);
 		tmp_b = tmp_b->next;
+	}
+}
+
+void	assign_totop_cost(t_stack **stack)
+{
+	int	size;
+	t_stack	*tmp;
+
+	size = stacksize(*stack);
+	(*stack)->totop_cost = 0;
+	tmp = (*stack)->next;
+	while (tmp->next != *stack)
+	{
+		if (tmp->current_i <= size / 2)
+			tmp->totop_cost = tmp->current_i;
+		else
+			tmp->totop_cost = size - tmp->current_i;
+		tmp = tmp->next;
 	}
 }

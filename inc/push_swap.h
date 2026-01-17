@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/16 15:53:01 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:29:50 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -21,6 +21,7 @@ typedef struct s_stack
 	int			    value;
     int             index;
 	int				current_i;
+	int				totop_cost;
     struct s_stack	*previous;
 	struct s_stack	*next;
 	struct s_stack	*target_node;
@@ -39,7 +40,7 @@ int	check_args(int argc, char **argv);
 
 // stack 
 
-void	print_stack(t_stack *stack, int index, int curr_index, int tn_val);
+void	print_stack(t_stack *stack, int debug);
 t_stack *stacknew(int value);
 t_stack	*stacklast(t_stack *stack);
 void	stackdelone(t_stack *stack);
@@ -74,9 +75,11 @@ int	rrr(t_stack **stack_a, t_stack **stack_b);
 void	selection_sort0(t_stack **stack_a, t_stack **stack_b);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 void	sort_three(t_stack **stack, int is_a);
+void	turk_sort(t_stack **stack_a, t_stack **stack_b);
 
 // 
 t_stack	*smallest_bigger(int value, t_stack **stack_a);
 void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
+void	assign_totop_cost(t_stack **stack_a);
 
 #endif
