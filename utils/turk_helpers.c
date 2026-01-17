@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:04:26 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/17 15:24:38 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:55:55 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,29 @@ t_stack	*smallest_bigger(int value, t_stack **stack_a)
 	return (min);
 }
 
+t_stack	*smallest(t_stack **stack)
+{
+	t_stack	*tmp;
+	t_stack	*min;
+
+	min = *stack;
+	tmp = (*stack)->next;	
+	while (tmp != *stack)
+	{
+		if (tmp->value < min->value)
+			min = tmp;
+		tmp = tmp->next;
+	}
+	return (min);
+}
+
 void	assign_target_node(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *tmp_b;
 
 	tmp_b = *stack_b;
 	if (is_biggest(tmp_b->value, stack_a))
-		tmp_b->target_node = *stack_a;
+		tmp_b->target_node = smallest(stack_a);
 	else
 		tmp_b->target_node = smallest_bigger(tmp_b->value, stack_a);
 	tmp_b = tmp_b->next;
@@ -71,7 +87,7 @@ void	assign_target_node(t_stack **stack_a, t_stack **stack_b)
 
 void	assign_totop_cost(t_stack **stack)
 {
-	int	size;
+	size_t	size;
 	t_stack	*tmp;
 
 	size = stacksize(*stack);

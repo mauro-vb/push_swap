@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/17 15:29:38 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:26:15 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ void	print_stack(t_stack *stack, int debug)
 	{
 		ft_printf(" %i", stack->value);
 		if (debug)
-			ft_printf("(%i)", stack->totop_cost);// change here for debug
+			ft_printf("(%i)", stack->previous->value);// change here for debug
 		ft_printf(", ");
 		stack = stack->next;
 		if (stack == initial)
@@ -71,12 +71,15 @@ int main(int argc, char **argv)
 	}
 	
 	stack = init_stack(argv, argc);
-	stack_b = stacknew(4);
-	stackadd_back(&stack_b, stacknew(9));
-	stackadd_back(&stack_b, stacknew(2));
-	stackadd_back(&stack_b, stacknew(5));
-
-	assign_totop_cost(&stack);
+	stack_b = NULL;
+	print_stack(stack, 1);
+	pb(&stack, &stack_b);
+	pb(&stack, &stack_b);
+	pb(&stack, &stack_b);
+	pb(&stack, &stack_b);
+	print_stack(stack, 1);
+	//rra(&stack);
+	//sort_three(&stack, 1);
 	turk_sort(&stack, &stack_b);
 	print_stack(stack, 1);
 	return (0);
