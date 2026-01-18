@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:31:42 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/17 17:25:56 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/18 17:28:16 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	rrotate(t_stack **stack)
 	if (!(*stack) || (*stack)->previous == *stack)
 		return ;
 	*stack = (*stack)->previous;
+	current_index_stack(stack);
 }
 
 int	rra(t_stack **stack_a)

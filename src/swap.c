@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:07:40 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/13 16:29:32 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/18 17:28:40 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	swap(t_stack **stack)
 	fst->index = snd->index;
 	snd->value = tmp_val;
 	snd->index = tmp_index;
+	current_index_stack(stack);
 	return (1);
 }
 

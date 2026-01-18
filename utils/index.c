@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:05:34 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/16 15:11:43 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/18 17:32:00 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	current_index_stack(t_stack **stack)
 	t_stack	*tmp;
 	int		i;
 
+	if (!(*stack))
+		return ;
 	i = 0;
 	(*stack)->current_i = i++;
 	tmp = (*stack)->next;
