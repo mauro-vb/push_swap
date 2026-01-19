@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 15:33:25 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/19 15:58:11 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -145,7 +145,10 @@ int main(int argc, char **argv)
 		turk_sort(&stack, &stack_b);
 	else if (config->mode == MODE_SIMPLE)
 		selection_sort0(&stack, &stack_b);
+	else if (config->mode == MODE_MEDIUM)
+		chunk_sort(&stack, &stack_b);
 	else
 		radix_sort(&stack, &stack_b);
+	print_stack(stack, 1);
 	return (0);
 }
