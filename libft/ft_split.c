@@ -61,7 +61,21 @@ static void	free_arr(char **arr, size_t i)
 	free(arr);
 }
 
-char	**ft_split(char const *s, char c)
+static int	is_in_set(char c, char *set)
+{
+	int	i;
+	
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	**ft_split(char const *s, char *c)
 {
 	char	**arr;
 	char	*ptr;
@@ -76,7 +90,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (i < nwords)
 	{
-		while (*ptr == c)
+		while (is_in_set(*ptr, c))
 			ptr++;
 		arr[i] = malloc_word(ptr, c);
 		if (arr[i] == NULL)
