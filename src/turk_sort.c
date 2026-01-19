@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 15:26:23 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 16:02:33 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 17:24:57 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,15 @@ static t_stack	*get_cheapest(t_stack **stack_a, size_t size_a, size_t size_b)
 
 static int	(*rotation(t_stack *node, t_stack **stack, int is_a))(t_stack **s)
 {
-	if (node->target_node->current_i <= stacksize(*stack) / 2)
+	size_t	pos;
+	size_t	size;
+
+	size = stacksize(*stack);
+	if (is_a)
+		pos = node->current_i;
+	else
+		pos = node->target_node->current_i;
+	if (pos <= size / 2)
 	{
 		if (is_a)
 			return (ra);
@@ -112,7 +120,7 @@ void	turk_sort(t_stack **stack_a, t_stack **stack_b)
 		assign_target_node(stack_b, stack_a);
 		assign_totop_cost(stack_a);
 		assign_totop_cost(stack_b);
-		tmp = get_cheapest(stack_a, stacksize(*stack_a), stacksize(*stack_a));
+		tmp = get_cheapest(stack_a, stacksize(*stack_a), stacksize(*stack_b));
 		rotate_push(stack_a, stack_b, tmp);
 	}
 	tmp = biggest(stack_b);

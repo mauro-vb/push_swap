@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:04:26 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 15:30:47 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 17:14:57 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	assign_target_node(t_stack **stack_dest, t_stack **stack_src)
 	tmp_src = *stack_src;
 	while (1)
 	{
-		if (tmp_src == smallest(stack_src))
+		if (tmp_src->value < smallest(stack_dest)->value)
 			tmp_src->target_node = biggest(stack_dest);
 		else
 			tmp_src->target_node = biggest_smaller(tmp_src->value, stack_dest);
