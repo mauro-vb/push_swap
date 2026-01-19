@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 13:36:05 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:32:45 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ void	print_stack(t_stack *stack, int debug)
 	{
 		ft_printf(" %i", stack->value);
 		if (debug)
-			ft_printf("(%i)", stack->current_i);// change here for debug
+			ft_printf("(%i)", stack->current_i);
 		ft_printf(", ");
 		stack = stack->next;
 		if (stack == initial)
@@ -58,23 +58,18 @@ static t_stack	*init_stack(char **argv, int argc)
 	return (head);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stack	*stack;
+	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	ft_printf("\n\n\n TEST \n\n");
 	if (!check_args(argc, argv))
 	{
-		ft_printf("Bad Input...");
+		ft_printf("Error");
 		return (0);
 	}
-	
-	stack = init_stack(argv, argc);
+	stack_a = init_stack(argv, argc);
 	stack_b = NULL;
-	//print_stack(stack, 1);
-	//radix_sort(&stack, &stack_b);
-	turk_sort(&stack, &stack_b);
-	//selection_sort0(&stack, &stack_b);
+	turk_sort(&stack_a, &stack_b);
 	return (0);
 }
