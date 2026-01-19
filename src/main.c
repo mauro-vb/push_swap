@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 15:58:11 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/19 16:43:05 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -124,6 +124,7 @@ int main(int argc, char **argv)
 	t_stack		*stack;
 	t_stack		*stack_b;
 	t_config	*config;
+	float		disorder;
 
 	config = (t_config *)malloc(sizeof(t_config *));
 	config->bench = 0;
@@ -142,13 +143,20 @@ int main(int argc, char **argv)
 	stack_b = NULL;
 	//print_stack(stack, 1);
 	if (config->mode == MODE_ADAPTIVE)
-		turk_sort(&stack, &stack_b);
+	{
+		disorder = compute_disorder(stack);
+		if (disorder < 0.2)
+			selection_sort0(&stack, &stack_b);
+		else if (disorder >= 0.2 && disorder < 0.5)
+			chunk_sort(&stack, &stack_b);
+		else
+			radix_sort(&stack, &stack_b);
+	}
 	else if (config->mode == MODE_SIMPLE)
 		selection_sort0(&stack, &stack_b);
 	else if (config->mode == MODE_MEDIUM)
 		chunk_sort(&stack, &stack_b);
 	else
 		radix_sort(&stack, &stack_b);
-	print_stack(stack, 1);
 	return (0);
 }

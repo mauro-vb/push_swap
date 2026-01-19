@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:14:52 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/14 15:11:03 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/19 16:42:36 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ float	compute_disorder(t_stack *stack)
 		if (i == stack)
 			break ;
 	}
-	ft_printf("%i total pairs and %i mistakes\n", total_pairs, mistakes);
 	if (total_pairs == 0)
 		return 0.0;
 	return ((float)mistakes / (float)total_pairs);
