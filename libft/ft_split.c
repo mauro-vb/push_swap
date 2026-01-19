@@ -12,7 +12,21 @@
 
 #include "libft.h"
 
-static size_t	count_words(char *s, char c)
+static int	is_in_set(char c, char *set)
+{
+	int	i;
+	
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static size_t	count_words(char *s, char *c)
 {
 	size_t	count;
 	size_t	i;
@@ -21,28 +35,28 @@ static size_t	count_words(char *s, char c)
 	i = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] == c)
+		while (s[i] && is_in_set(s[i], c))
 			i++;
-		if (s[i] && s[i] != c)
+		if (s[i] && !is_in_set(s[i], c))
 			count++;
-		while (s[i] && s[i] != c)
+		while (s[i] && !is_in_set(s[i], c))
 			i++;
 	}
 	return (count);
 }
 
-static char	*malloc_word(char *s, char c)
+static char	*malloc_word(char *s, char *c)
 {
 	size_t	len;
 	size_t	i;
 	char	*word;
 
 	len = 0;
-	while (s[len] && s[len] != c)
+	while (s[len] && !is_in_set(s[len], c))
 		len++;
 	word = malloc((len + 1) * sizeof(char));
 	i = 0;
-	while (s[i] && s[i] != c)
+	while (s[i] && !is_in_set(s[i], c))
 	{
 		word[i] = s[i];
 		i++;
@@ -61,7 +75,7 @@ static void	free_arr(char **arr, size_t i)
 	free(arr);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char *c)
 {
 	char	**arr;
 	char	*ptr;
@@ -76,7 +90,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (i < nwords)
 	{
-		while (*ptr == c)
+		while (is_in_set(*ptr, c))
 			ptr++;
 		arr[i] = malloc_word(ptr, c);
 		if (arr[i] == NULL)

@@ -37,6 +37,7 @@ typedef struct s_ops
 // input handling and stack init
 
 int	check_args(int argc, char **argv);
+int	parse_flags(int argc, char **argv, t_config *config);
 
 // stack 
 
