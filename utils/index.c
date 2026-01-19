@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 16:05:34 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/14 14:07:13 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/18 17:32:00 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,23 @@ void	index_stack(t_stack **stack)
 	{
 		head = get_next_min(stack);
 		head->index = index++;
+	}
+}
+
+void	current_index_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+	int		i;
+
+	if (!(*stack))
+		return ;
+	i = 0;
+	(*stack)->current_i = i++;
+	tmp = (*stack)->next;
+	while (tmp != *stack)
+	{
+		tmp->current_i = i;
+		tmp = tmp->next;
+		i++;
 	}
 }
