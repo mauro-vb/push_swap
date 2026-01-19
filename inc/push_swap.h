@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 15:56:45 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/19 18:22:41 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -26,6 +26,23 @@ typedef struct s_stack
 	struct s_stack	*next;
 	struct s_stack	*target_node;
 }	t_stack;
+
+typedef struct s_bench
+{
+	float	disorder;
+	char	strat;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
+}	t_bench;
 
 typedef struct s_ops
 {
