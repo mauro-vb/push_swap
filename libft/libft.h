@@ -54,7 +54,7 @@ void	ft_putnbr_fd(int n, int fd);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char *c);
 
 // Part III
 typedef struct s_list
