@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 13:36:05 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:33:25 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -141,8 +141,11 @@ int main(int argc, char **argv)
 	stack = init_stack(argv, argc);
 	stack_b = NULL;
 	//print_stack(stack, 1);
-	//radix_sort(&stack, &stack_b);
-	turk_sort(&stack, &stack_b);
-	//selection_sort0(&stack, &stack_b);
+	if (config->mode == MODE_ADAPTIVE)
+		turk_sort(&stack, &stack_b);
+	else if (config->mode == MODE_SIMPLE)
+		selection_sort0(&stack, &stack_b);
+	else
+		radix_sort(&stack, &stack_b);
 	return (0);
 }

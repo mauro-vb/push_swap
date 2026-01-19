@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 12:38:42 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:29:26 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -33,6 +33,20 @@ typedef struct s_ops
 	int (*rot)(t_stack **);
 	int (*rrot)(t_stack **);
 }	t_ops;
+
+typedef enum e_mode
+{
+	MODE_ADAPTIVE,
+	MODE_SIMPLE,
+	MODE_MEDIUM,
+	MODE_COMPLEX
+}	t_mode;
+
+typedef struct s_config
+{
+	t_mode mode;
+	int bench;
+}	t_config;
 
 // input handling and stack init
 
