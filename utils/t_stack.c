@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 14:02:16 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/14 14:12:00 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/15 16:18:44 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ size_t	stacksize(t_stack *head)
 	size_t	i;
 	t_stack	*tmp;
 
+	if (!head)
+		return (0);
 	tmp = head;
 	i = 0;
 	while (tmp != head->previous)

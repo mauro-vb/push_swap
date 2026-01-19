@@ -6,14 +6,14 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 15:23:20 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/19 13:36:05 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_stack *stack, int print_i)
+void	print_stack(t_stack *stack, int debug)
 {
 	t_stack	*initial;
 
@@ -24,8 +24,8 @@ void	print_stack(t_stack *stack, int print_i)
 	while (1)
 	{
 		ft_printf(" %i", stack->value);
-		if (print_i)
-			ft_printf("(%i)", stack->index);
+		if (debug)
+			ft_printf("(%i)", stack->current_i);// change here for debug
 		ft_printf(", ");
 		stack = stack->next;
 		if (stack == initial)
@@ -115,6 +115,7 @@ static t_stack	*init_stack(char **argv, int argc)
 		args++;
 	}
 	index_stack(&head);
+	current_index_stack(&head);
 	return (head);
 }
 
@@ -139,13 +140,9 @@ int main(int argc, char **argv)
 	
 	stack = init_stack(argv, argc);
 	stack_b = NULL;
-
-	print_stack(stack, 1);
-	if(config->mode == MODE_SIMPLE)
-		selection_sort0(&stack, &stack_b);
-	else
-		radix_sort(&stack, &stack_b);
-	print_stack(stack, 1);
-
+	//print_stack(stack, 1);
+	//radix_sort(&stack, &stack_b);
+	turk_sort(&stack, &stack_b);
+	//selection_sort0(&stack, &stack_b);
 	return (0);
 }
