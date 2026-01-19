@@ -6,7 +6,7 @@
 #    By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/08 11:46:41 by mvazquez          #+#    #+#              #
-#    Updated: 2026/01/08 11:46:44 by mvazquez         ###   ########.fr        #
+#    Updated: 2026/01/19 16:55:36 by mvazquez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJ = $(SRC:.c=.o)
 # pattern rule to build any .o file i need corresponding .c
 %.o: %.c
 	@echo "Compiling $^"
-	@$(CC) $(CFLAGS) -c $^ -o $@
+	@$(CC) $(CFLAGS) -g -c $^ -o $@
 
 .PHONY: all clean fclean re
 
