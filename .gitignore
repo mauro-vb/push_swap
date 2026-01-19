@@ -57,3 +57,5 @@ dkms.conf
 *.swp
 
 .DS_Store
+checker*
+visualizer

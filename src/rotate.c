@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:12:07 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/18 17:27:58 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 11:35:05 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	rotate(t_stack **stack)
 		return ;
 	}
 	*stack = (*stack)->next;
-	current_index_stack(stack);
 }
 
 int	ra(t_stack **stack_a)

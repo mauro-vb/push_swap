@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:09:19 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/18 17:30:00 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 11:34:55 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ static void	push(t_stack **stack_dest, t_stack **stack_src)
 		dest_tail->next = moving;
 		*stack_dest = moving;
 	}
-	current_index_stack(stack_dest);
-	current_index_stack(stack_src);
 }
 
 int	pa(t_stack **stack_a, t_stack **stack_b)

@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/17 16:52:53 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 12:38:42 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -79,6 +79,7 @@ void	turk_sort(t_stack **stack_a, t_stack **stack_b);
 
 // 
 t_stack	*smallest(t_stack **stack_a);
+t_stack	*biggest(t_stack **stack_a);
 t_stack	*smallest_bigger(int value, t_stack **stack_a);
 void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
 void	assign_totop_cost(t_stack **stack_a);
