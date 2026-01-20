@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 12:20:48 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:03:12 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -91,7 +91,8 @@ static void	sort(t_stack **stack_a, t_stack **stack_b, t_config *config)
 		disorder = compute_disorder(*stack_a);
 		if (disorder < 0.2)
 			selection_sort(stack_a, stack_b);
-		else if (disorder >= 0.2 && disorder < 0.5)
+		else if (
+			(disorder >= 0.2 && disorder < 0.5) || stacksize(*stack_a) < 150)
 			chunk_sort(stack_a, stack_b);
 		else
 			radix_sort(stack_a, stack_b);
