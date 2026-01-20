@@ -32,20 +32,14 @@ static int	handle_flag(char *arg, t_config *config)
 static int	parse_flags(int argc, char **argv, t_config *config)
 {
 	int	i;
-	int	flagset;
 
 	i = 1;
-	flagset = 0;
 	while (i < argc)
 	{
 		if (argv[i][0] == '-' && argv[i][1] == '-')
 		{
-			if (!flagset)
-			{
-				if (!handle_flag(argv[i], config))
+			if (!handle_flag(argv[i], config))
 					return (0);
-				flagset = 1;
-			}
 			argv[i] = "";
 		}
 		i++;
@@ -90,6 +84,11 @@ static void	sort(t_stack **a, t_stack **b, t_config *config, t_bench *bench)
 	{
 		disorder = compute_disorder(*a);
 		bench->disorder = disorder;
+		if (disorder == 0)
+		{
+			bench->strat = ft_strdup("NONE");
+			return ;
+		}
 		if (disorder < 2000)
 			selection_sort(a, b, bench);
 		else if (
@@ -123,7 +122,7 @@ int	main(int argc, char **argv)
 	}
 	if (!check_args(argc, argv))
 	{
-		write(2, "Error", 12);
+		write(2, "Error", 5);
 		return (0);
 	}
 	bench.silent = config->bench;

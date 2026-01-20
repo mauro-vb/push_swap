@@ -80,6 +80,9 @@ static char	*get_disorder(int disorder)
 
 void	print_bench(t_bench *bench)
 {
+	bench->total += bench->sa + bench->sb + bench->ss + bench->pa;
+	bench->total += bench->pb + bench->rr + bench->ra + bench->rb;
+	bench->total += bench->rra + bench->rrb + bench->rrr;
 	write(2, "[bench] disorder: ", 18);
 	write(2, get_disorder(bench->disorder), 5);
 	write(2, "\n", 1);
