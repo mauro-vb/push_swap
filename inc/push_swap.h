@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 11:33:22 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 15:56:45 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -34,9 +34,24 @@ typedef struct s_ops
 	int (*rrot)(t_stack **);
 }	t_ops;
 
+typedef enum e_mode
+{
+	MODE_ADAPTIVE,
+	MODE_SIMPLE,
+	MODE_MEDIUM,
+	MODE_COMPLEX
+}	t_mode;
+
+typedef struct s_config
+{
+	t_mode mode;
+	int bench;
+}	t_config;
+
 // input handling and stack init
 
 int	check_args(int argc, char **argv);
+int	parse_flags(int argc, char **argv, t_config *config);
 
 // stack 
 
@@ -76,6 +91,7 @@ void	selection_sort0(t_stack **stack_a, t_stack **stack_b);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 void	sort_three(t_stack **stack, int is_a);
 void	turk_sort(t_stack **stack_a, t_stack **stack_b);
+void	chunk_sort(t_stack **stack_a, t_stack **stack_b);
 
 // 
 t_stack	*smallest(t_stack **stack_a);
