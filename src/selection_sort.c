@@ -23,12 +23,12 @@ void	selection_sort(t_stack **stack_a, t_stack **stack_b)
 	{
 		if ((*stack_a)->index == i)
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, bench);
 			i++;
 		}
 		else
-			rra(stack_a);
+			rra(stack_a, bench);
 	}
 	while (*stack_b)
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, bench);
 }

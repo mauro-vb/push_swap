@@ -27,11 +27,29 @@ typedef struct s_stack
 	struct s_stack	*target_node;
 }	t_stack;
 
+typedef struct s_bench
+{
+	float	disorder;
+	char	*strat;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
+	int		total;
+}	t_bench;
+
 typedef struct s_ops
 {
-	int	(*swp)(t_stack **);
-	int	(*rot)(t_stack **);
-	int	(*rrot)(t_stack **);
+	int (*swp)(t_stack **, t_bench*);
+	int (*rot)(t_stack **, t_bench*);
+	int (*rrot)(t_stack **, t_bench*);
 }	t_ops;
 
 typedef enum e_mode
@@ -50,7 +68,10 @@ typedef struct s_config
 
 // input handling and stack init
 
-int		check_args(int argc, char **argv);
+int	check_args(int argc, char **argv);
+int	parse_flags(int argc, char **argv, t_config *config);
+t_bench	init_bench(void);
+void	print_bench(t_bench *bench);
 
 // stack 
 
@@ -69,28 +90,28 @@ float	compute_disorder(t_stack *stack);
 
 // instructions
 
-int		sa(t_stack **stack_a);
-int		sb(t_stack **stack_b);
-int		ss(t_stack **stack_a, t_stack **stack_b);
+int	sa(t_stack **stack_a, t_bench *bench);
+int	sb(t_stack **stack_b, t_bench *bench);
+int	ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int		pa(t_stack **stack_a, t_stack **stack_b);
-int		pb(t_stack **stack_a, t_stack **stack_b);
+int	pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int	pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int		ra(t_stack **stack_a);
-int		rb(t_stack **stack_b);
-int		rr(t_stack **stack_a, t_stack **stack_b);
+int	ra(t_stack **stack_a, t_bench *bench);
+int	rb(t_stack **stack_b, t_bench *bench);
+int	rr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int		rra(t_stack **stack_a);
-int		rrb(t_stack **stack_b);
-int		rrr(t_stack **stack_a, t_stack **stack_b);
+int	rra(t_stack **stack_a, t_bench *bench);
+int	rrb(t_stack **stack_b, t_bench *bench);
+int	rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
 // sorting
 
-void	selection_sort(t_stack **stack_a, t_stack **stack_b);
-void	radix_sort(t_stack **stack_a, t_stack **stack_b);
-void	sort_three(t_stack **stack, int is_a);
-void	turk_sort(t_stack **stack_a, t_stack **stack_b);
-void	chunk_sort(t_stack **stack_a, t_stack **stack_b);
+void	selection_sort0(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void	sort_three(t_stack **stack, int is_a, t_bench *bench);
+void	turk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
 // helpers
 t_stack	*smallest(t_stack **stack_a);

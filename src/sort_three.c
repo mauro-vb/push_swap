@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+void	sort_three(t_stack **stack, int is_a, t_bench *bench)
 static t_ops	get_ops(int is_a)
 {
 	t_ops	ops;
@@ -32,15 +33,23 @@ static void	two_action_cases(t_ops ops, t_stack **stack)
 	head_val = (*stack)->index;
 	tail_val = (*stack)->previous->index;
 	mid_val = (*stack)->next->index;
-	if (head_val > tail_val && head_val > mid_val && mid_val > tail_val)
+	if (head_val > mid_val && mid_val > tail_val)
+		return ;
+	if (tail_val > head_val && tail_val > mid_val && head_val > mid_val)
+		ops.swp(stack, bench);
+	else if (head_val > tail_val && head_val > mid_val && mid_val < tail_val)
+		ops.rot(stack, bench);
+	else if (head_val > tail_val && head_val < mid_val && mid_val > tail_val)
+		ops.rrot(stack, bench);
+	else if (head_val > tail_val && head_val > mid_val && mid_val > tail_val)
 	{
-		ops.swp(stack);
-		ops.rrot(stack);
+		ops.swp(stack, bench);
+		ops.rrot(stack, bench);
 	}
 	else if (head_val < tail_val && head_val < mid_val && mid_val > tail_val)
 	{
-		ops.swp(stack);
-		ops.rot(stack);
+		ops.swp(stack, bench);
+		ops.rot(stack, bench);
 	}
 }
 
