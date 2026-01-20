@@ -6,7 +6,7 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:23:30 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/20 15:06:02 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 15:47:18 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,25 @@ static void	print_last_bench_line(t_bench *bench)
 	write(2, "\n", 1);
 }
 
+static char	*get_disorder(int disorder)
+{
+	char	*res;
+	int		div;
+	int		modulo;
+
+	if (disorder == 10000)
+		return ("100.0");
+	div = disorder / 100;
+	modulo = disorder % 100;
+	res = ft_strjoin(ft_itoa(div), ".");
+	return (ft_strjoin(res, ft_itoa(modulo)));
+}
+
 void	print_bench(t_bench *bench)
 {
-	write(2, "[bench] disorder:\n", 18);
+	write(2, "[bench] disorder: ", 18);
+	write(2, get_disorder(bench->disorder), 5);
+	write(2, "\n", 1);
 	write(2, "[bench] strategy: ", 18);
 	write(2, bench->strat, ft_strlen(bench->strat));
 	write(2, "\n", 1);

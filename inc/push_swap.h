@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 15:11:07 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 15:36:23 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ typedef struct s_stack
 typedef struct s_bench
 {
 	int		silent;
-	float	disorder;
+	int		disorder;
 	char	*strat;
 	int		sa;
 	int		sb;
@@ -69,7 +69,7 @@ typedef struct s_config
 
 // input handling and stack init
 
-int	c	heck_args(int argc, char **argv);
+int		check_args(int argc, char **argv);
 t_bench	init_bench(void);
 void	print_bench(t_bench *bench);
 
@@ -86,7 +86,7 @@ void	index_stack(t_stack **stack);
 void	current_index_stack(t_stack **stack);
 int		is_sorted(t_stack *stack);
 
-float	compute_disorder(t_stack *stack);
+int		compute_disorder(t_stack *stack);
 
 // instructions
 

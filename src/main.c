@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 15:09:48 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 15:48:20 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -84,15 +84,16 @@ static t_stack	*init_stack(char **argv, int argc)
 
 static void	sort(t_stack **a, t_stack **b, t_config *config, t_bench *bench)
 {
-	float		disorder;
+	int		disorder;
 
 	if (config->mode == MODE_ADAPTIVE)
 	{
 		disorder = compute_disorder(*a);
-		if (disorder < 0.2)
+		bench->disorder = disorder;
+		if (disorder < 2000)
 			selection_sort(a, b, bench);
 		else if (
-			(disorder >= 0.2 && disorder < 0.5) || stacksize(*a) < 150)
+			(disorder >= 2000 && disorder < 5000) || stacksize(*a) < 150)
 			chunk_sort(a, b, bench);
 		else
 			radix_sort(a, b, bench);
@@ -128,7 +129,7 @@ int	main(int argc, char **argv)
 	bench.silent = config->bench;
 	stack_a = init_stack(argv, argc);
 	stack_b = NULL;
-	sort(&stack_a, &stack_b, config, &bench);	
+	sort(&stack_a, &stack_b, config, &bench);
 	if (config->bench)
 		print_bench(&bench);
 	return (0);
