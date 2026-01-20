@@ -25,7 +25,7 @@ void	print_stack(t_stack *stack, int debug)
 	{
 		ft_printf(" %i", stack->value);
 		if (debug)
-			ft_printf("(%i)", stack->current_i);// change here for debug
+			ft_printf("(%i)", stack->current_i);
 		ft_printf(", ");
 		stack = stack->next;
 		if (stack == initial)
@@ -119,7 +119,7 @@ static t_stack	*init_stack(char **argv, int argc)
 	return (head);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stack		*stack;
 	t_stack		*stack_b;
@@ -138,8 +138,7 @@ int main(int argc, char **argv)
 		write(2, "Bad Input...", 12);
 		return (0);
 	}
-	
-	stack = init_stack(argv, argc);
+	stack_a = init_stack(argv, argc);
 	stack_b = NULL;
 	//print_stack(stack, 1);
 	if (config->mode == MODE_ADAPTIVE)

@@ -99,5 +99,6 @@ t_stack	*biggest(t_stack **stack_a);
 t_stack	*smallest_bigger(int value, t_stack **stack_a);
 void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
 void	assign_totop_cost(t_stack **stack_a);
+int	(*get_rot(t_stack *node, t_stack **stack, int is_a))(t_stack **s);
 
 #endif

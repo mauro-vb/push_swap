@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:09:19 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 11:34:55 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/19 18:13:18 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,10 @@
 // Take the first element at the 
 // top of a stack and put it at the top of other stack
 
-static void	push(t_stack **stack_dest, t_stack **stack_src)
+static void	handle_dest(t_stack	**stack_dest, t_stack *moving)
 {
-	t_stack *moving;
-	t_stack	*src_tail;
 	t_stack	*dest_tail;
 
-	if (!(*stack_src))
-		return ;
-	moving = *stack_src;
-	if (moving == moving->next)
-		*stack_src = NULL;
-	else
-	{
-		src_tail = moving->previous;
-		(*stack_src) = moving->next;
-		(*stack_src)->previous = src_tail;
-		src_tail->next = *stack_src;
-	}
 	if (!*stack_dest)
 	{
 		*stack_dest = moving;
@@ -48,6 +34,32 @@ static void	push(t_stack **stack_dest, t_stack **stack_src)
 		dest_tail->next = moving;
 		*stack_dest = moving;
 	}
+}
+
+static void	handle_src(t_stack **stack_src, t_stack *moving)
+{
+	t_stack	*src_tail;
+
+	if (moving == moving->next)
+		*stack_src = NULL;
+	else
+	{
+		src_tail = moving->previous;
+		(*stack_src) = moving->next;
+		(*stack_src)->previous = src_tail;
+		src_tail->next = *stack_src;
+	}
+}
+
+static void	push(t_stack **stack_dest, t_stack **stack_src)
+{
+	t_stack	*moving;
+
+	if (!(*stack_src))
+		return ;
+	moving = *stack_src;
+	handle_src(stack_src, moving);
+	handle_dest(stack_dest, moving);
 }
 
 int	pa(t_stack **stack_a, t_stack **stack_b)
