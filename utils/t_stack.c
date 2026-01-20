@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 14:02:16 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/15 16:18:44 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 11:29:56 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,12 @@ t_stack	*stacknew(int value)
 	stack->next = stack;
 	return (stack);
 }
-
+/*
 t_stack	*stacklast(t_stack *stack)
 {
 	return (stack->previous);
 }
-
-void	stackadd_front(t_stack **stack, t_stack *new)
-{
-	t_stack	*tail;
-
-	if (!stack || !new)
-		return ;
-	tail = (*stack)->previous;
-	new->next = *stack;
-	new->previous = tail;
-	(*stack)->previous = new;
-	tail->next = new;
-	*stack = new;
-}
+*/
 
 void	stackadd_back(t_stack **stack, t_stack *new)
 {
@@ -73,6 +60,38 @@ size_t	stacksize(t_stack *head)
 	return (i + 1);
 }
 
+t_stack	*smallest(t_stack **stack)
+{
+	t_stack	*tmp;
+	t_stack	*min;
+
+	min = *stack;
+	tmp = (*stack)->next;
+	while (tmp != *stack)
+	{
+		if (tmp->value < min->value)
+			min = tmp;
+		tmp = tmp->next;
+	}
+	return (min);
+}
+
+t_stack	*biggest(t_stack **stack)
+{
+	t_stack	*tmp;
+	t_stack	*max;
+
+	max = *stack;
+	tmp = (*stack)->next;
+	while (tmp != *stack)
+	{
+		if (tmp->value > max->value)
+			max = tmp;
+		tmp = tmp->next;
+	}
+	return (max);
+}
+/*
 void	stackdelone(t_stack *stack)
 {
 	if (!stack)
@@ -83,3 +102,4 @@ void	stackdelone(t_stack *stack)
 		stack->next->previous = stack->previous;
 	free(stack);
 }
+*/

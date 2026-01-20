@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 13:42:20 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 12:22:10 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -18,11 +18,11 @@
 
 typedef struct s_stack
 {
-	int			    value;
-    long			index;
+	int				value;
+	long			index;
 	size_t			current_i;
 	size_t			totop_cost;
-    struct s_stack	*previous;
+	struct s_stack	*previous;
 	struct s_stack	*next;
 	struct s_stack	*target_node;
 }	t_stack;
@@ -62,8 +62,8 @@ typedef enum e_mode
 
 typedef struct s_config
 {
-	t_mode mode;
-	int bench;
+	t_mode	mode;
+	int		bench;
 }	t_config;
 
 // input handling and stack init
@@ -76,10 +76,10 @@ void	print_bench(t_bench *bench);
 // stack 
 
 void	print_stack(t_stack *stack, int debug);
-t_stack *stacknew(int value);
+t_stack	*stacknew(int value);
 t_stack	*stacklast(t_stack *stack);
-void	stackdelone(t_stack *stack);
-void	stackadd_front(t_stack **stack, t_stack *new);
+//void	stackdelone(t_stack *stack);
+//void	stackadd_front(t_stack **stack, t_stack *new);
 void	stackadd_back(t_stack **stack, t_stack *new);
 size_t	stacksize(t_stack *head);
 void	index_stack(t_stack **stack);
@@ -105,7 +105,7 @@ int	rra(t_stack **stack_a, t_bench *bench);
 int	rrb(t_stack **stack_b, t_bench *bench);
 int	rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-// simple sort
+// sorting
 
 void	selection_sort0(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
@@ -113,11 +113,12 @@ void	sort_three(t_stack **stack, int is_a, t_bench *bench);
 void	turk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-// 
+// helpers
 t_stack	*smallest(t_stack **stack_a);
 t_stack	*biggest(t_stack **stack_a);
 t_stack	*smallest_bigger(int value, t_stack **stack_a);
 void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
 void	assign_totop_cost(t_stack **stack_a);
+int		(*get_rot(t_stack *node, t_stack **stack, int is_a))(t_stack **s);
 
 #endif

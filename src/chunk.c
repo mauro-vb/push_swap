@@ -6,7 +6,7 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:45:03 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/20 13:31:55 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 11:57:51 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	int	size;
 
 	size = stacksize(*stack_a);
-	chunk_size = get_chunk_size(size); 
-
+	chunk_size = get_chunk_size(size);
 	i = 0;
 	range = chunk_size;
 	while (*stack_a)
