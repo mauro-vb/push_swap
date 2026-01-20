@@ -6,7 +6,7 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 16:45:15 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/20 13:03:21 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 14:41:18 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -40,6 +40,7 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	int		size;
 	int		max_bits;
 
+	bench->strat = ft_strdup("Radix sort / 0(n * log(n))");
 	size = stacksize(*stack_a);
 	max_bits = get_max_bits(*stack_a);
 	i = 0;

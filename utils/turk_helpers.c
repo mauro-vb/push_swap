@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:04:26 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 11:33:47 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 14:05:23 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,25 @@ void	assign_totop_cost(t_stack **stack)
 	}
 }
 
-int	(*get_rot(t_stack *node, t_stack **stack, int is_a))(t_stack **s)
+int	(*get_rot(t_stack *node, t_stack **stack, int isa))(t_stack **s, t_bench *b)
 {
 	size_t	pos;
 	size_t	size;
 
 	size = stacksize(*stack);
-	if (is_a)
+	if (isa)
 		pos = node->current_i;
 	else
 		pos = node->target_node->current_i;
 	if (pos <= size / 2)
 	{
-		if (is_a)
+		if (isa)
 			return (ra);
 		return (rb);
 	}
 	else
 	{
-		if (is_a)
+		if (isa)
 			return (rra);
 		return (rrb);
 	}

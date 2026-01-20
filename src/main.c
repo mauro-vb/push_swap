@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 13:03:12 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 15:09:48 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -82,27 +82,27 @@ static t_stack	*init_stack(char **argv, int argc)
 	return (head);
 }
 
-static void	sort(t_stack **stack_a, t_stack **stack_b, t_config *config)
+static void	sort(t_stack **a, t_stack **b, t_config *config, t_bench *bench)
 {
 	float		disorder;
 
 	if (config->mode == MODE_ADAPTIVE)
 	{
-		disorder = compute_disorder(*stack_a);
+		disorder = compute_disorder(*a);
 		if (disorder < 0.2)
-			selection_sort(stack_a, stack_b);
+			selection_sort(a, b, bench);
 		else if (
-			(disorder >= 0.2 && disorder < 0.5) || stacksize(*stack_a) < 150)
-			chunk_sort(stack_a, stack_b);
+			(disorder >= 0.2 && disorder < 0.5) || stacksize(*a) < 150)
+			chunk_sort(a, b, bench);
 		else
-			radix_sort(stack_a, stack_b);
+			radix_sort(a, b, bench);
 	}
 	else if (config->mode == MODE_SIMPLE)
-		selection_sort(stack_a, stack_b);
+		selection_sort(a, b, bench);
 	else if (config->mode == MODE_MEDIUM)
-		chunk_sort(stack_a, stack_b);
+		chunk_sort(a, b, bench);
 	else
-		turk_sort(stack_a, stack_b);
+		turk_sort(a, b, bench);
 }
 
 int	main(int argc, char **argv)
@@ -110,7 +110,6 @@ int	main(int argc, char **argv)
 	t_stack		*stack_a;
 	t_stack		*stack_b;
 	t_config	*config;
-	float		disorder;
 	t_bench		bench;
 
 	config = (t_config *)malloc(sizeof(t_config *));
@@ -126,47 +125,11 @@ int	main(int argc, char **argv)
 		write(2, "Error", 12);
 		return (0);
 	}
+	bench.silent = config->bench;
 	stack_a = init_stack(argv, argc);
 	stack_b = NULL;
-	if (config->mode == MODE_ADAPTIVE)
-	{
-		disorder = compute_disorder(stack);
-		bench.disorder = disorder;
-		if (disorder < 0.2)
-		{
-			bench.strat = ft_strdup("Selection sort / O(n^2)");
-			selection_sort0(&stack, &stack_b, &bench);
-		}
-
-		else if (disorder >= 0.2 && disorder < 0.5)
-		{
-			bench.strat = "Chunk sort / O(n * sqrt(n)";
-			chunk_sort(&stack, &stack_b, &bench);
-		}
-		else
-		{
-			bench.strat = "Radix sort / O(n * log(n)";
-			radix_sort(&stack, &stack_b, &bench);
-		}
-	}
-	else if (config->mode == MODE_SIMPLE)
-	{
-		bench.strat = "Selection sort / O(n^2)";
-		selection_sort0(&stack, &stack_b, &bench);
-	}
-	else if (config->mode == MODE_MEDIUM)
-	{
-		bench.strat = "Chunk sort / O(n * sqrt(n)";
-		chunk_sort(&stack, &stack_b, &bench
-		);
-	}
-	else
-	{
-		bench.strat = "Turk sort / O(n * log(n)";
-		turk_sort(&stack, &stack_b, &bench);
-	}
+	sort(&stack_a, &stack_b, config, &bench);	
 	if (config->bench)
 		print_bench(&bench);
-	sort(&stack_a, &stack_b, config);
 	return (0);
 }

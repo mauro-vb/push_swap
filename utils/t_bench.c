@@ -6,7 +6,7 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:23:30 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/20 13:45:14 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 15:06:02 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_bench	init_bench(void)
 {
 	t_bench	bench;
 
+	bench.silent = 0;
 	bench.sa = 0;
 	bench.sb = 0;
 	bench.ss = 0;
@@ -31,7 +32,7 @@ t_bench	init_bench(void)
 	return (bench);
 }
 
-static void print_first_bench_line(t_bench *bench)
+static void	print_first_bench_line(t_bench *bench)
 {
 	write(2, "[bench] sa: ", 12);
 	write(2, ft_itoa(bench->sa), ft_strlen(ft_itoa(bench->sa)));
@@ -46,7 +47,7 @@ static void print_first_bench_line(t_bench *bench)
 	write(2, "\n", 1);
 }
 
-static void print_last_bench_line(t_bench *bench)
+static void	print_last_bench_line(t_bench *bench)
 {
 	write(2, "[bench] ra: ", 12);
 	write(2, ft_itoa(bench->ra), ft_strlen(ft_itoa(bench->ra)));
@@ -62,8 +63,6 @@ static void print_last_bench_line(t_bench *bench)
 	write(2, ft_itoa(bench->rrr), ft_strlen(ft_itoa(bench->rrr)));
 	write(2, "\n", 1);
 }
-
-
 
 void	print_bench(t_bench *bench)
 {

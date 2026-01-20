@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 12:22:10 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 15:11:07 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -29,6 +29,7 @@ typedef struct s_stack
 
 typedef struct s_bench
 {
+	int		silent;
 	float	disorder;
 	char	*strat;
 	int		sa;
@@ -47,9 +48,9 @@ typedef struct s_bench
 
 typedef struct s_ops
 {
-	int (*swp)(t_stack **, t_bench*);
-	int (*rot)(t_stack **, t_bench*);
-	int (*rrot)(t_stack **, t_bench*);
+	int	(*swp)(t_stack **, t_bench*);
+	int	(*rot)(t_stack **, t_bench*);
+	int	(*rrot)(t_stack **, t_bench*);
 }	t_ops;
 
 typedef enum e_mode
@@ -68,8 +69,7 @@ typedef struct s_config
 
 // input handling and stack init
 
-int	check_args(int argc, char **argv);
-int	parse_flags(int argc, char **argv, t_config *config);
+int	c	heck_args(int argc, char **argv);
 t_bench	init_bench(void);
 void	print_bench(t_bench *bench);
 
@@ -90,24 +90,24 @@ float	compute_disorder(t_stack *stack);
 
 // instructions
 
-int	sa(t_stack **stack_a, t_bench *bench);
-int	sb(t_stack **stack_b, t_bench *bench);
-int	ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int		sa(t_stack **stack_a, t_bench *bench);
+int		sb(t_stack **stack_b, t_bench *bench);
+int		ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int	pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
-int	pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int		pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int		pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int	ra(t_stack **stack_a, t_bench *bench);
-int	rb(t_stack **stack_b, t_bench *bench);
-int	rr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int		ra(t_stack **stack_a, t_bench *bench);
+int		rb(t_stack **stack_b, t_bench *bench);
+int		rr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int	rra(t_stack **stack_a, t_bench *bench);
-int	rrb(t_stack **stack_b, t_bench *bench);
-int	rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int		rra(t_stack **stack_a, t_bench *bench);
+int		rrb(t_stack **stack_b, t_bench *bench);
+int		rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
 // sorting
 
-void	selection_sort0(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void	selection_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 void	sort_three(t_stack **stack, int is_a, t_bench *bench);
 void	turk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
@@ -119,6 +119,6 @@ t_stack	*biggest(t_stack **stack_a);
 t_stack	*smallest_bigger(int value, t_stack **stack_a);
 void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
 void	assign_totop_cost(t_stack **stack_a);
-int		(*get_rot(t_stack *node, t_stack **stack, int is_a))(t_stack **s);
+int		(*get_rot(t_stack *n, t_stack **stck, int a))(t_stack **s, t_bench *b);
 
 #endif
