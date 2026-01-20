@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 13:04:26 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 17:14:57 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 11:33:47 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,38 +26,6 @@ t_stack	*biggest_smaller(int value, t_stack **stack)
 	while (tmp != *stack)
 	{
 		if (value > tmp->value && (!max || tmp->value > max->value))
-			max = tmp;
-		tmp = tmp->next;
-	}
-	return (max);
-}
-
-t_stack	*smallest(t_stack **stack)
-{
-	t_stack	*tmp;
-	t_stack	*min;
-
-	min = *stack;
-	tmp = (*stack)->next;
-	while (tmp != *stack)
-	{
-		if (tmp->value < min->value)
-			min = tmp;
-		tmp = tmp->next;
-	}
-	return (min);
-}
-
-t_stack	*biggest(t_stack **stack)
-{
-	t_stack	*tmp;
-	t_stack	*max;
-
-	max = *stack;
-	tmp = (*stack)->next;
-	while (tmp != *stack)
-	{
-		if (tmp->value > max->value)
 			max = tmp;
 		tmp = tmp->next;
 	}
@@ -97,6 +65,30 @@ void	assign_totop_cost(t_stack **stack)
 		tmp = tmp->next;
 		if (tmp == *stack)
 			break ;
+	}
+}
+
+int	(*get_rot(t_stack *node, t_stack **stack, int is_a))(t_stack **s)
+{
+	size_t	pos;
+	size_t	size;
+
+	size = stacksize(*stack);
+	if (is_a)
+		pos = node->current_i;
+	else
+		pos = node->target_node->current_i;
+	if (pos <= size / 2)
+	{
+		if (is_a)
+			return (ra);
+		return (rb);
+	}
+	else
+	{
+		if (is_a)
+			return (rra);
+		return (rrb);
 	}
 }
 
