@@ -80,15 +80,15 @@ static void	sort(t_stack **a, t_stack **b, t_config *config, t_bench *bench)
 {
 	int		disorder;
 
+	disorder = compute_disorder(*a);
+	bench->disorder = disorder;
+	if (disorder == 0)
+	{
+		bench->strat = ft_strdup("NONE");
+		return ;
+	}
 	if (config->mode == MODE_ADAPTIVE)
 	{
-		disorder = compute_disorder(*a);
-		bench->disorder = disorder;
-		if (disorder == 0)
-		{
-			bench->strat = ft_strdup("NONE");
-			return ;
-		}
 		if (disorder < 2000)
 			selection_sort(a, b, bench);
 		else if (

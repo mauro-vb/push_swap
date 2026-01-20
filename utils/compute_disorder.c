@@ -19,10 +19,12 @@ int	compute_disorder(t_stack *stack)
 	t_stack	*i;
 	t_stack	*j;
 
+	if (!stack || stack->next == stack)
+		return (0);
 	mistakes = 0;
 	total_pairs = 0;
 	i = stack;
-	while (1)
+	while (i->next != stack)
 	{
 		j = i->next;
 		while (j != stack)
@@ -33,8 +35,6 @@ int	compute_disorder(t_stack *stack)
 			j = j->next;
 		}
 		i = i->next;
-		if (i == stack)
-			break ;
 	}
 	if (total_pairs == 0)
 		return (0.0);
