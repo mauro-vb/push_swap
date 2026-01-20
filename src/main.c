@@ -125,7 +125,6 @@ int	main(int argc, char **argv)
 		write(2, "Error", 5);
 		return (0);
 	}
-	bench.silent = config->bench;
 	stack_a = init_stack(argv, argc);
 	stack_b = NULL;
 	sort(&stack_a, &stack_b, config, &bench);

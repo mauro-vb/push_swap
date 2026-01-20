@@ -16,7 +16,6 @@ t_bench	init_bench(void)
 {
 	t_bench	bench;
 
-	bench.silent = 0;
 	bench.sa = 0;
 	bench.sb = 0;
 	bench.ss = 0;

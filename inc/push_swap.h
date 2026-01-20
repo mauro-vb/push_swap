@@ -29,7 +29,6 @@ typedef struct s_stack
 
 typedef struct s_bench
 {
-	int		silent;
 	int		disorder;
 	char	*strat;
 	int		sa;
