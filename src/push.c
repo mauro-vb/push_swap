@@ -67,8 +67,7 @@ int	pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	if (!stack_b)
 		return (0);
 	push(stack_a, stack_b);
-	if (!bench->silent)
-		ft_printf("pa\n");
+	ft_printf("pa\n");
 	bench->pa++;
 	return (1);
 }
@@ -78,8 +77,7 @@ int	pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 	if (!stack_a)
 		return (0);
 	push(stack_b, stack_a);
-	if (!bench->silent)
-		ft_printf("pb\n");
+	ft_printf("pb\n");
 	bench->pb++;
 	return (1);
 }

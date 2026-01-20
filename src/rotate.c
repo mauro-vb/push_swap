@@ -28,8 +28,7 @@ static void	rotate(t_stack **stack)
 int	ra(t_stack **stack_a, t_bench *bench)
 {
 	rotate(stack_a);
-	if (!bench->silent)
-		ft_printf("ra\n");
+	ft_printf("ra\n");
 	bench->ra++;
 	return (1);
 }
@@ -37,8 +36,7 @@ int	ra(t_stack **stack_a, t_bench *bench)
 int	rb(t_stack **stack_b, t_bench *bench)
 {
 	rotate(stack_b);
-	if (!bench->silent)
-		ft_printf("rb\n");
+	ft_printf("rb\n");
 	bench->rb++;
 	return (1);
 }
@@ -47,8 +45,7 @@ int	rr(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	if (!bench->silent)
-		ft_printf("rr\n");
+	ft_printf("rr\n");
 	bench->rr++;
 	return (1);
 }

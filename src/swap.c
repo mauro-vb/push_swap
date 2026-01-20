@@ -40,8 +40,7 @@ int	sa(t_stack **stack_a, t_bench *bench)
 {
 	if (!swap(stack_a))
 		return (0);
-	if (!bench->silent)
-		ft_printf("sa\n");
+	ft_printf("sa\n");
 	bench->sa++;
 	return (1);
 }
@@ -50,8 +49,7 @@ int	sb(t_stack **stack_b, t_bench *bench)
 {
 	if (!swap(stack_b))
 		return (0);
-	if (!bench->silent)
-		ft_printf("sb\n");
+	ft_printf("sb\n");
 	bench->sb++;
 	return (1);
 }
@@ -62,8 +60,7 @@ int	ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 		return (0);
 	swap(stack_a);
 	swap(stack_b);
-	if (!bench->silent)
-		ft_printf("ss\n");
+	ft_printf("ss\n");
 	bench->ss++;
 	return (1);
 }
