@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:09:19 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 11:34:55 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:02:07 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,22 @@ static void	push(t_stack **stack_dest, t_stack **stack_src)
 	}
 }
 
-int	pa(t_stack **stack_a, t_stack **stack_b)
+int	pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	if (!stack_b)
 		return (0);
 	push(stack_a, stack_b);
 	ft_printf("pa\n");
+	bench->pa++;
 	return (1);
 }
 
-int	pb(t_stack **stack_a, t_stack **stack_b)
+int	pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	if (!stack_a)
 		return (0);
 	push(stack_b, stack_a);
 	ft_printf("pb\n");
+	bench->pb++;
 	return (1);
 }

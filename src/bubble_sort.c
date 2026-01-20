@@ -6,7 +6,7 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:54:07 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/15 13:14:57 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 13:30:24 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	bubble_sort(t_stack **stack)
+void	bubble_sort(t_stack **stack, t_bench *bench)
 {
 	if (!stack || !*stack || (*stack)->next == *stack)
 		return ;
 	while (!is_sorted(*stack))
 	{
 		if ((*stack)->value > (*stack)->next->value)
-			sa(stack);
-		ra(stack);
+			sa(stack, bench);
+		ra(stack, bench);
 	}
 }

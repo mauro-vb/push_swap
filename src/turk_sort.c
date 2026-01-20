@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 15:26:23 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 12:36:17 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 13:14:08 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ static void	assign_rotations(
 	t_stack *node,
 	t_stack **stack_a,
 	t_stack **stack_b,
-	int (**rot_a)(t_stack **),
-	int (**rot_b)(t_stack **)
+	int (**rot_a)(t_stack **, t_bench*),
+	int (**rot_b)(t_stack **, t_bench*)
 )
 {
 	if (node->target_node->current_i <= stacksize(*stack_b) / 2)
@@ -82,10 +82,10 @@ static void	assign_rotations(
 		*rot_a = rra;
 }
 
-void	rotate_push(t_stack **stack_a, t_stack **stack_b, t_stack *node)
+void	rotate_push(t_stack **stack_a, t_stack **stack_b, t_stack *node, t_bench *bench)
 {
-	int		(*rot_a)(t_stack **);
-	int		(*rot_b)(t_stack **);
+	int		(*rot_a)(t_stack **, t_bench*);
+	int		(*rot_b)(t_stack **, t_bench*);
 	
 	assign_rotations(node, stack_a, stack_b, &rot_a, &rot_b);
 	if (*rot_a == *rot_b)
@@ -93,26 +93,26 @@ void	rotate_push(t_stack **stack_a, t_stack **stack_b, t_stack *node)
 		while (*stack_b != node->target_node && *stack_a != node)
 		{
 			if (*rot_b == rb)
-				rr(stack_a, stack_b);
+				rr(stack_a, stack_b, bench);
 			else
-				rrr(stack_a, stack_b);
+				rrr(stack_a, stack_b, bench);
 		}
 	}
 	while (*stack_b != node->target_node)
-		(*rot_b)(stack_b);
+		(*rot_b)(stack_b, bench);
 	while (*stack_a != node)
-		(*rot_a)(stack_a);	
-	pb(stack_a, stack_b);
+		(*rot_a)(stack_a, bench);	
+	pb(stack_a, stack_b, bench);
 }
 
-void	turk_sort(t_stack **stack_a, t_stack **stack_b)
+void	turk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	t_stack	*tmp;
-	int		(*rot_b)(t_stack **);
+	int		(*rot_b)(t_stack **, t_bench*);
 
 	while (stacksize(*stack_b) < 3)
-		pb(stack_a, stack_b);
-	sort_three(stack_b, 0);
+		pb(stack_a, stack_b, bench);
+	sort_three(stack_b, 0, bench);
 	while (stacksize(*stack_a) > 0)
 	{
 		current_index_stack(stack_a); 
@@ -121,7 +121,7 @@ void	turk_sort(t_stack **stack_a, t_stack **stack_b)
 		assign_totop_cost(stack_a);
 		assign_totop_cost(stack_b);
 		tmp = get_cheapest(stack_a, stack_b);
-		rotate_push(stack_a, stack_b, tmp);
+		rotate_push(stack_a, stack_b, tmp, bench);
 	}
 	tmp = biggest(stack_b);
 	if (tmp->current_i <= stacksize(*stack_b) / 2)
@@ -129,18 +129,18 @@ void	turk_sort(t_stack **stack_a, t_stack **stack_b)
 	else
 		rot_b = rrb;
 	while (*stack_b != tmp)
-		rot_b(stack_b);
+		rot_b(stack_b, bench);
 	while (*stack_b)
 	{
 		tmp = biggest(stack_b);
 		if (*stack_b == tmp)
-			pa(stack_a, stack_b);
+			pa(stack_a, stack_b, bench);
 		else
 		{
 			if (tmp->current_i <= stacksize(*stack_b) / 2)
-				rb(stack_b);
+				rb(stack_b, bench);
 			else
-				rrb(stack_b);
+				rrb(stack_b, bench);
 		}
 	}
 }

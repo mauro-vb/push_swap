@@ -6,13 +6,13 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:27:39 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/17 17:22:27 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:43:32 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_three(t_stack **stack, int is_a)
+void	sort_three(t_stack **stack, int is_a, t_bench *bench)
 {
 	int		head_val;
 	int		tail_val;
@@ -31,20 +31,20 @@ void	sort_three(t_stack **stack, int is_a)
 	if (head_val > mid_val && mid_val > tail_val)
 		return ;
 	if (tail_val > head_val && tail_val > mid_val && head_val > mid_val)
-		ops.swp(stack);
+		ops.swp(stack, bench);
 	else if (head_val > tail_val && head_val > mid_val && mid_val < tail_val)
-		ops.rot(stack);
+		ops.rot(stack, bench);
 	else if (head_val > tail_val && head_val < mid_val && mid_val > tail_val)
-		ops.rrot(stack);
+		ops.rrot(stack, bench);
 	else if (head_val > tail_val && head_val > mid_val && mid_val > tail_val)
 	{
-		ops.swp(stack);
-		ops.rrot(stack);
+		ops.swp(stack, bench);
+		ops.rrot(stack, bench);
 	}
 	else if (head_val < tail_val && head_val < mid_val && mid_val > tail_val)
 	{
-		ops.swp(stack);
-		ops.rot(stack);
+		ops.swp(stack, bench);
+		ops.rot(stack, bench);
 	}
 }
 

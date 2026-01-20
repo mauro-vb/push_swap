@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:12:07 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 11:35:05 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:04:53 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,27 @@ static void	rotate(t_stack **stack)
 	*stack = (*stack)->next;
 }
 
-int	ra(t_stack **stack_a)
+int	ra(t_stack **stack_a, t_bench *bench)
 {
 	rotate(stack_a);
 	ft_printf("ra\n");
+	bench->ra++;
 	return (1);
 }
 
-int	rb(t_stack **stack_b)
+int	rb(t_stack **stack_b, t_bench *bench)
 {
 	rotate(stack_b);
 	ft_printf("rb\n");
+	bench->rb++;
 	return (1);
 }
 
-int	rr(t_stack **stack_a, t_stack **stack_b)
+int	rr(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	rotate(stack_a);
 	rotate(stack_b);
 	ft_printf("rr\n");
+	bench->rr++;
 	return (1);
 }

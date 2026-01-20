@@ -6,13 +6,13 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:27:39 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 16:44:13 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 13:06:50 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	selection_sort0(t_stack **stack_a, t_stack **stack_b)
+void	selection_sort0(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	int		i;
 
@@ -23,12 +23,12 @@ void	selection_sort0(t_stack **stack_a, t_stack **stack_b)
 	{
 		if ((*stack_a)->index == i)
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, bench);
 			i++;
 		}
 		else
-			rra(stack_a);
+			rra(stack_a, bench);
 	}
 	while (*stack_b)
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, bench);
 }

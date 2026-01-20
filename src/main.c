@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 12:57:43 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 13:41:36 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -155,29 +155,29 @@ int main(int argc, char **argv)
 
 		else if (disorder >= 0.2 && disorder < 0.5)
 		{
-			bench.strat = ft_strdup("Chunk sort / O(n * sqrt(n)");
+			bench.strat = "Chunk sort / O(n * sqrt(n)";
 			chunk_sort(&stack, &stack_b, &bench);
 		}
 		else
 		{
-			bench.strat = ft_strdup("Radix sort / O(n * log(n)");
+			bench.strat = "Radix sort / O(n * log(n)";
 			radix_sort(&stack, &stack_b, &bench);
 		}
 	}
 	else if (config->mode == MODE_SIMPLE)
 	{
-		bench.strat = ft_strdup("Selection sort / O(n^2)");
-		selection_sort0(&stack, &stack_b, bench);
+		bench.strat = "Selection sort / O(n^2)";
+		selection_sort0(&stack, &stack_b, &bench);
 	}
 	else if (config->mode == MODE_MEDIUM)
 	{
-		bench.strat = ft_strdup("Chunk sort / O(n * sqrt(n)");
+		bench.strat = "Chunk sort / O(n * sqrt(n)";
 		chunk_sort(&stack, &stack_b, &bench
 		);
 	}
 	else
 	{
-		bench.strat = ft_strdup("Turk sort / O(n * log(n)");
+		bench.strat = "Turk sort / O(n * log(n)";
 		turk_sort(&stack, &stack_b, &bench);
 	}
 	if (config->bench)

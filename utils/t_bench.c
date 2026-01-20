@@ -6,18 +6,16 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:23:30 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/20 12:16:43 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 13:45:14 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bench	init_bench(char	*strat, float disorder);
+t_bench	init_bench(void)
 {
 	t_bench	bench;
 
-	bench.disorder = disorder;
-	bench.strat = ft_strdup(strat);
 	bench.sa = 0;
 	bench.sb = 0;
 	bench.ss = 0;
@@ -33,7 +31,7 @@ t_bench	init_bench(char	*strat, float disorder);
 	return (bench);
 }
 
-void print_first_bench_line(t_bench *bench)
+static void print_first_bench_line(t_bench *bench)
 {
 	write(2, "[bench] sa: ", 12);
 	write(2, ft_itoa(bench->sa), ft_strlen(ft_itoa(bench->sa)));
@@ -48,7 +46,7 @@ void print_first_bench_line(t_bench *bench)
 	write(2, "\n", 1);
 }
 
-void print_last_bench_line(t_bench *bench);
+static void print_last_bench_line(t_bench *bench)
 {
 	write(2, "[bench] ra: ", 12);
 	write(2, ft_itoa(bench->ra), ft_strlen(ft_itoa(bench->ra)));
@@ -74,7 +72,7 @@ void	print_bench(t_bench *bench)
 	write(2, bench->strat, ft_strlen(bench->strat));
 	write(2, "\n", 1);
 	write(2, "[bench] total ops: ", 19);
-	write(2, ft_itoa(bench->total), ft_strlen(ft_itoa(bench->total));
+	write(2, ft_itoa(bench->total), ft_strlen(ft_itoa(bench->total)));
 	write(2, "\n", 1);
 	print_first_bench_line(bench);
 	print_last_bench_line(bench);

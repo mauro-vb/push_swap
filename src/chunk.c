@@ -6,7 +6,7 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 15:45:03 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/19 15:54:50 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/20 13:31:55 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	find_max_pos(t_stack *stack, int *max_idx)
 	return (pos);
 }
 
-static void	push_back_to_a(t_stack **stack_a, t_stack **stack_b)
+static void	push_back_to_a(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	int	max_idx;
 	int	pos;
@@ -52,14 +52,14 @@ static void	push_back_to_a(t_stack **stack_a, t_stack **stack_b)
 		if (pos <= size / 2)
 		{
 			while ((*stack_b)->index != max_idx)
-				rb(stack_b);
+				rb(stack_b, bench);
 		}
 		else
 		{
 			while ((*stack_b)->index != max_idx)
-				rrb(stack_b);
+				rrb(stack_b, bench);
 		}
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, bench);
 	}
 }
 
@@ -76,7 +76,7 @@ static int	get_chunk_size(int size)
 	return (chunk * 2);
 }
 
-void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
+void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
 	int	i;
 	int	range;
@@ -92,15 +92,15 @@ void	chunk_sort(t_stack **stack_a, t_stack **stack_b)
 	{
 		if ((*stack_a)->index < range)
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, bench);
 			if ((*stack_b)->index < i)
-				rb(stack_b);
+				rb(stack_b, bench);
 			i++;
 			if (i == range)
 				range += chunk_size;
 		}
 		else
-			ra(stack_a);
+			ra(stack_a, bench);
 	}
-	push_back_to_a(stack_a, stack_b);
+	push_back_to_a(stack_a, stack_b, bench);
 }
