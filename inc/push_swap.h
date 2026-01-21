@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 15:45:13 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:24:26 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -75,7 +75,7 @@ int		check_args(int argc, char **argv);
 char	*get_input_str(char **argv);
 t_bench	init_bench(void);
 void	print_bench(t_bench *bench);
-void	free_split(char **strs, size_t n);
+void	free_split(char **strs);
 
 // stack 
 
