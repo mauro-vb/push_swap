@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:24:48 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 16:46:14 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/21 17:01:25 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	check_args(int argc, char **argv)
 	long	num;
 	char	**split_ptr;
 	char	**args;
+	int		i;
 
 	if (argc == 2)
 		args = ft_split(get_input_str(argv), " ");
@@ -82,6 +83,7 @@ int	check_args(int argc, char **argv)
 		args = ++argv;
 	if (!args)
 		return (0);
+	i = 0;
 	split_ptr = args;
 	while (args[i++])
 	{

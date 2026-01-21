@@ -6,13 +6,13 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 14:09:51 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 16:52:04 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/21 16:58:45 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	recursive_free(t_stack *head)
+void	recursive_free(t_stack *head)
 {
 	t_stack	*tmp;
 

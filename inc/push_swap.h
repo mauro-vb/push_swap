@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 16:33:57 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/21 16:59:43 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -75,7 +75,7 @@ int			check_args(int argc, char **argv);
 char		*get_input_str(char **argv);
 t_bench		init_bench(void);
 void		print_bench(t_bench *bench);
-void		free_split(char **strs, size_t n);
+void		free_split(char **strs);
 
 // stack 
 
@@ -83,6 +83,7 @@ void		print_stack(t_stack *stack, int debug);
 t_stack		*stacknew(int value);
 t_stack		*stacklast(t_stack *stack);
 t_stack		*init_stack(char **argv, int argc);
+void		recursive_free(t_stack *head);
 //void	stackdelone(t_stack *stack);
 //void	stackadd_front(t_stack **stack, t_stack *new);
 void		stackadd_back(t_stack **stack, t_stack *new);
