@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 15:45:13 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:33:57 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -16,8 +16,8 @@
 
 # include "../libft/libft.h"
 
-#define INT_MAX 2147483647  
-#define INT_MIN -2147483648  
+# define INT_MAX 2147483647  
+# define INT_MIN -2147483648  
 
 typedef struct s_stack
 {
@@ -71,64 +71,65 @@ typedef struct s_config
 
 // input handling and stack init
 
-int		check_args(int argc, char **argv);
-char	*get_input_str(char **argv);
-t_bench	init_bench(void);
-void	print_bench(t_bench *bench);
-void	free_split(char **strs, size_t n);
+int			check_args(int argc, char **argv);
+char		*get_input_str(char **argv);
+t_bench		init_bench(void);
+void		print_bench(t_bench *bench);
+void		free_split(char **strs, size_t n);
 
 // stack 
 
-void	print_stack(t_stack *stack, int debug);
-t_stack	*stacknew(int value);
-t_stack	*stacklast(t_stack *stack);
-t_stack	*init_stack(char **argv, int argc);
+void		print_stack(t_stack *stack, int debug);
+t_stack		*stacknew(int value);
+t_stack		*stacklast(t_stack *stack);
+t_stack		*init_stack(char **argv, int argc);
 //void	stackdelone(t_stack *stack);
 //void	stackadd_front(t_stack **stack, t_stack *new);
-void	stackadd_back(t_stack **stack, t_stack *new);
-size_t	stacksize(t_stack *head);
-void	index_stack(t_stack **stack);
-void	current_index_stack(t_stack **stack);
-int		is_sorted(t_stack *stack);
+void		stackadd_back(t_stack **stack, t_stack *new);
+size_t		stacksize(t_stack *head);
+void		index_stack(t_stack **stack);
+void		current_index_stack(t_stack **stack);
+int			is_sorted(t_stack *stack);
 
-int		compute_disorder(t_stack *stack);
+int			compute_disorder(t_stack *stack);
 
 // instructions
 
-int		sa(t_stack **stack_a, t_bench *bench);
-int		sb(t_stack **stack_b, t_bench *bench);
-int		ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int			sa(t_stack **stack_a, t_bench *bench);
+int			sb(t_stack **stack_b, t_bench *bench);
+int			ss(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int		pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
-int		pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int			pa(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int			pb(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int		ra(t_stack **stack_a, t_bench *bench);
-int		rb(t_stack **stack_b, t_bench *bench);
-int		rr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int			ra(t_stack **stack_a, t_bench *bench);
+int			rb(t_stack **stack_b, t_bench *bench);
+int			rr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
-int		rra(t_stack **stack_a, t_bench *bench);
-int		rrb(t_stack **stack_b, t_bench *bench);
-int		rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+int			rra(t_stack **stack_a, t_bench *bench);
+int			rrb(t_stack **stack_b, t_bench *bench);
+int			rrr(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
 // sorting
 
-void	selection_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
-void	radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
-void	sort_three(t_stack **stack, int is_a, t_bench *bench);
-void	turk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
-void	chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void		selection_sort(t_stack **sa, t_stack **sb, t_bench *b);
+void		radix_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void		sort_three(t_stack **stack, int is_a, t_bench *bench);
+void		turk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
+void		chunk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench);
 
 // helpers
-t_stack	*smallest(t_stack **stack_a);
-t_stack	*biggest(t_stack **stack_a);
-t_stack	*smallest_bigger(int value, t_stack **stack_a);
-void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
-void	assign_totop_cost(t_stack **stack_a);
-int		(*get_rot(t_stack *n, t_stack **stck, int a))(t_stack **s, t_bench *b);
-long	ft_atol(const char *nptr);
+t_stack		*smallest(t_stack **stack_a);
+t_stack		*biggest(t_stack **stack_a);
+t_stack		*smallest_bigger(int value, t_stack **stack_a);
+void		assign_target_node(t_stack **stack_a, t_stack **stack_b);
+void		assign_totop_cost(t_stack **stack_a);
+int			(*get_rot(t_stack *n, t_stack **s, int a))(t_stack **s, t_bench *b);
+long		ft_atol(const char *nptr);
+t_config	*init_config(void);
 
 // freeing
 
-void	free_all(t_stack *a, t_stack *b, t_bench *bench, t_config *config);
+void		free_all(t_stack *a, t_stack *b, t_bench *bench, t_config *config);
 
 #endif
