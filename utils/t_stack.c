@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 14:02:16 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 11:29:56 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 14:11:02 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ t_stack	*stacknew(int value)
 	stack->next = stack;
 	return (stack);
 }
-/*
-t_stack	*stacklast(t_stack *stack)
-{
-	return (stack->previous);
-}
-*/
 
 void	stackadd_back(t_stack **stack, t_stack *new)
 {
@@ -101,5 +95,10 @@ void	stackdelone(t_stack *stack)
 	if (stack->next)
 		stack->next->previous = stack->previous;
 	free(stack);
+}
+
+t_stack	*stacklast(t_stack *stack)
+{
+	return (stack->previous);
 }
 */

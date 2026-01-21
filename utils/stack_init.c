@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/21 15:31:05 by mvazquez          #+#    #+#             */
+/*   Updated: 2026/01/21 15:47:30 by mvazquez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+t_stack	*init_stack(char **argv, int argc)
+{
+	char	**args;
+	char	**split_ptr;
+	t_stack	*head;
+	size_t	i;
+
+	if (argc == 2)
+		args = ft_split(get_input_str(argv), " ");
+	else
+		args = argv + 1;
+	while (*args[0] == '\0')
+		args++;
+	head = stacknew(ft_atoi(*args));
+	i = 0;
+	split_ptr = args;
+	args++;
+	while (*args)
+	{
+		if (*args[0] != '\0')
+			stackadd_back(&head, stacknew(ft_atoi(*args)));
+		i++;
+		args++;
+	}
+	index_stack(&head);
+	current_index_stack(&head);
+	if (argc == 2)
+		free_split(split_ptr, i);
+	return (head);
+}

@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 13:41:44 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:31:58 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -48,35 +48,6 @@ static int	parse_flags(int *argc, char **argv, t_config *config)
 		i++;
 	}
 	return (1);
-}
-
-static t_stack	*init_stack(char **argv, int argc)
-{
-	char	**args;
-	t_stack	*head;
-	t_stack	*tmp;
-
-	if (argc == 2)
-		args = ft_split(get_input_str(argv), " ");
-	else
-		args = argv + 1;
-	while (*args[0] == '\0')
-		args++;
-	head = stacknew(ft_atoi(*args));
-	tmp = head;
-	args++;
-	while (*args)
-	{
-		if (*args[0] != '\0')
-		{
-			tmp = stacknew(ft_atoi(*args));
-			stackadd_back(&head, tmp);
-		}
-		args++;
-	}
-	index_stack(&head);
-	current_index_stack(&head);
-	return (head);
 }
 
 static void	sort(t_stack **a, t_stack **b, t_config *config, t_bench *bench)
@@ -135,5 +106,6 @@ int	main(int argc, char **argv)
 	sort(&stack_a, &stack_b, config, &bench);
 	if (config->bench)
 		print_bench(&bench);
+	free_all(stack_a, stack_b, &bench, config);
 	return (0);
 }

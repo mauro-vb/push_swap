@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:24:48 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 13:42:56 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:28:04 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,16 @@ static int	is_num(char *str)
 	return (1);
 }
 
+void	free_split(char **strs, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i++ < n)
+		free(strs[i]);
+	free(strs);
+}
+
 char	*get_input_str(char **argv)
 {
 	char	**res;
@@ -58,7 +68,9 @@ char	*get_input_str(char **argv)
 int	check_args(int argc, char **argv)
 {
 	long	num;
+	char	**split_ptr;
 	char	**args;
+	size_t	i;
 
 	if (argc == 2)
 		args = ft_split(get_input_str(argv), " ");
@@ -66,6 +78,8 @@ int	check_args(int argc, char **argv)
 		args = ++argv;
 	if (!args)
 		return (0);
+	i = 0;
+	split_ptr = args;
 	while (*args)
 	{
 		if (!is_num(*args))
@@ -76,7 +90,10 @@ int	check_args(int argc, char **argv)
 			if (has_duplicate(num, args) || num > INT_MAX || num < INT_MIN)
 				return (0);
 		}
+		i++;
 		args++;
 	}
+	if (argc == 2)
+		free_split(split_ptr, i);
 	return (1);
 }
