@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:24:48 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/19 14:44:47 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/21 13:42:56 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,25 @@ static int	is_num(char *str)
 	return (1);
 }
 
+char	*get_input_str(char **argv)
+{
+	char	**res;
+	int		i;
+
+	i = 1;
+	res = argv;
+	while (res[i][0] == '\0')
+		i++;
+	return (res[i]);
+}
+
 int	check_args(int argc, char **argv)
 {
 	long	num;
 	char	**args;
 
-	if (argc == 1)
-		return (0);
 	if (argc == 2)
-		args = ft_split(argv[1], " ");
+		args = ft_split(get_input_str(argv), " ");
 	else
 		args = ++argv;
 	if (!args)
@@ -62,8 +72,8 @@ int	check_args(int argc, char **argv)
 			return (0);
 		if (*args[0] != '\0')
 		{
-			num = ft_atoi(*args);
-			if (has_duplicate(num, args))
+			num = ft_atol(*args);
+			if (has_duplicate(num, args) || num > INT_MAX || num < INT_MIN)
 				return (0);
 		}
 		args++;

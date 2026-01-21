@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 15:48:20 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:41:44 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -29,18 +29,21 @@ static int	handle_flag(char *arg, t_config *config)
 		return (0);
 }
 
-static int	parse_flags(int argc, char **argv, t_config *config)
+static int	parse_flags(int *argc, char **argv, t_config *config)
 {
 	int	i;
+	int	ac;
 
+	ac = *argc;
 	i = 1;
-	while (i < argc)
+	while (i < ac)
 	{
 		if (argv[i][0] == '-' && argv[i][1] == '-')
 		{
 			if (!handle_flag(argv[i], config))
 					return (0);
 			argv[i] = "";
+			*argc -= 1;
 		}
 		i++;
 	}
@@ -54,7 +57,7 @@ static t_stack	*init_stack(char **argv, int argc)
 	t_stack	*tmp;
 
 	if (argc == 2)
-		args = ft_split(argv[1], " ");
+		args = ft_split(get_input_str(argv), " ");
 	else
 		args = argv + 1;
 	while (*args[0] == '\0')
@@ -112,17 +115,19 @@ int	main(int argc, char **argv)
 	t_config	*config;
 	t_bench		bench;
 
+	if (argc == 1)
+		return (0);
 	config = (t_config *)malloc(sizeof(t_config *));
 	config->bench = 0;
 	bench = init_bench();
-	if (!parse_flags(argc, argv, config))
+	if (!parse_flags(&argc, argv, config))
 	{
 		write(2, "Error parsing input\n", 20);
 		return (1);
 	}
 	if (!check_args(argc, argv))
 	{
-		write(2, "Error", 5);
+		write(2, "Error\n", 6);
 		return (0);
 	}
 	stack_a = init_stack(argv, argc);

@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 15:36:23 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 13:42:18 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,6 +15,9 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
+
+#define INT_MAX 2147483647  
+#define INT_MIN -2147483648  
 
 typedef struct s_stack
 {
@@ -69,6 +72,7 @@ typedef struct s_config
 // input handling and stack init
 
 int		check_args(int argc, char **argv);
+char	*get_input_str(char **argv);
 t_bench	init_bench(void);
 void	print_bench(t_bench *bench);
 
@@ -119,5 +123,6 @@ t_stack	*smallest_bigger(int value, t_stack **stack_a);
 void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
 void	assign_totop_cost(t_stack **stack_a);
 int		(*get_rot(t_stack *n, t_stack **stck, int a))(t_stack **s, t_bench *b);
+long	ft_atol(const char *nptr);
 
 #endif
