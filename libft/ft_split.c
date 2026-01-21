@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 11:07:41 by mvazquez          #+#    #+#             */
-/*   Updated: 2025/12/15 13:22:46 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:02:16 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	**ft_split(char const *s, char *c)
 {
 	char	**arr;
 	char	*ptr;
+	char	*tmp;
 	size_t	nwords;
 	size_t	i;
 
@@ -92,7 +93,9 @@ char	**ft_split(char const *s, char *c)
 	{
 		while (is_in_set(*ptr, c))
 			ptr++;
-		arr[i] = malloc_word(ptr, c);
+		tmp = malloc_word(ptr, c);
+		arr[i] = tmp;
+		free(tmp);
 		if (arr[i] == NULL)
 			free_arr(arr, i);
 		ptr += ft_strlen(arr[i]) + 1;
