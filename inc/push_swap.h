@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 16:24:26 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:54:21 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,9 +15,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-
-#define INT_MAX 2147483647  
-#define INT_MIN -2147483648  
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -76,6 +74,7 @@ char	*get_input_str(char **argv);
 t_bench	init_bench(void);
 void	print_bench(t_bench *bench);
 void	free_split(char **strs);
+void	recursive_free(t_stack *head);
 
 // stack 
 

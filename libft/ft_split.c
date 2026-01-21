@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 11:07:41 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 16:19:27 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 18:00:13 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	is_in_set(char c, char *set)
 {
 	int	i;
-	
+
 	i = 0;
 	while (set[i])
 	{
@@ -94,10 +94,7 @@ char	**ft_split(char const *s, char *c)
 			ptr++;
 		arr[i] = malloc_word(ptr, c);
 		if (arr[i] == NULL)
-		{
-			free_arr(arr, i);
-			return (NULL);
-		}
+			return (free_arr(arr, i), NULL);
 		ptr += ft_strlen(arr[i]) + 1;
 		i++;
 	}

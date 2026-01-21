@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:24:48 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 16:24:38 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 17:50:26 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	is_num(char *str)
 	return (1);
 }
 
-void    free_split(char **strs)
+void	free_split(char **strs)
 {
 	size_t	i;
 
@@ -72,36 +72,29 @@ char	*get_input_str(char **argv)
 
 int	check_args(int argc, char **argv)
 {
-	long	num;
 	char	**split_ptr;
 	char	**args;
+	int		res;
 
 	if (argc == 2)
-		args = ft_split(get_input_str(argv), " ");
+		args = ft_split(get_input_str(argv), " \n");
 	else
 		args = ++argv;
 	if (!args)
 		return (0);
 	split_ptr = args;
-	while (*args)
+	res = 1;
+	while (*args && res == 1)
 	{
 		if (!is_num(*args))
+			res = 0;
+		else if (*args[0] != '\0')
 		{
-			if (argc == 2) free_split(split_ptr);
-			return (0);
-		}
-		if (*args[0] != '\0')
-		{
-			num = ft_atol(*args);
-			if (has_duplicate(num, args) || num > INT_MAX || num < INT_MIN)
-			{
-				if (argc == 2) free_split(split_ptr);
-				return (0);
-			}
+			if (has_duplicate(ft_atol(*args), args)
+				|| ft_atol(*args) > INT_MAX || ft_atol(*args) < INT_MIN)
+				res = 0;
 		}
 		args++;
 	}
-	if (argc == 2)
-		free_split(split_ptr);
-	return (1);
+	return (free_split(split_ptr), res);
 }
