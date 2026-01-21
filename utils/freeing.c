@@ -6,22 +6,23 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 14:09:51 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 15:14:32 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:52:04 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-static void	recursive_free(t_stack *head) 
+static void	recursive_free(t_stack *head)
 {
-    t_stack	*tmp;
-	if (head == NULL) return ;
+	t_stack	*tmp;
 
-	if (head->next == head) 
+	if (head == NULL)
+		return ;
+	if (head->next == head)
 	{
 		free(head);
-        return ;
-    }
+		return ;
+	}
 	tmp = head->next;
 	head->next = head->next->next;
 	free(tmp);

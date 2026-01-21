@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:31:05 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 15:47:30 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:48:49 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,10 @@ t_stack	*init_stack(char **argv, int argc)
 	i = 0;
 	split_ptr = args;
 	args++;
-	while (*args)
+	while (args[i++])
 	{
-		if (*args[0] != '\0')
-			stackadd_back(&head, stacknew(ft_atoi(*args)));
-		i++;
-		args++;
+		if (args[i][0] != '\0')
+			stackadd_back(&head, stacknew(ft_atoi(args[i])));
 	}
 	index_stack(&head);
 	current_index_stack(&head);

@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:24:48 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 15:28:04 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/21 16:46:14 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,16 @@ int	check_args(int argc, char **argv)
 		return (0);
 	i = 0;
 	split_ptr = args;
-	while (*args)
+	while (args[i++])
 	{
-		if (!is_num(*args))
+		if (!is_num(args[i]))
 			return (0);
-		if (*args[0] != '\0')
+		if (args[i][0] != '\0')
 		{
-			num = ft_atol(*args);
+			num = ft_atol(args[i]);
 			if (has_duplicate(num, args) || num > INT_MAX || num < INT_MIN)
 				return (0);
 		}
-		i++;
-		args++;
 	}
 	if (argc == 2)
 		free_split(split_ptr, i);
