@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:24:48 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/22 11:21:14 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/22 12:06:44 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,6 @@ static int	is_num(char *str)
 	return (1);
 }
 
-void	free_split(char **strs)
-{
-	size_t	i;
-
-	if (!strs)
-		return ;
-	i = 0;
-	while (strs[i])
-	{
-		free(strs[i]);
-		i++;
-	}
-	free(strs);
-}
-
 char	*get_input_str(char **argv)
 {
 	char	**res;
@@ -68,6 +53,22 @@ char	*get_input_str(char **argv)
 	while (res[i][0] == '\0')
 		i++;
 	return (res[i]);
+}
+
+void	check_arg(char **args, int *res)
+{
+	while (*args && *res == 1)
+	{
+		if (!is_num(*args))
+			*res = 0;
+		else if (*args[0] != '\0')
+		{
+			if (has_duplicate(ft_atol(*args), args)
+				|| ft_atol(*args) > INT_MAX || ft_atol(*args) < INT_MIN)
+				*res = 0;
+		}
+		args++;
+	}
 }
 
 int	check_args(int argc, char **argv)
@@ -87,17 +88,6 @@ int	check_args(int argc, char **argv)
 	if (!args)
 		return (0);
 	res = 1;
-	while (*args && res == 1)
-	{
-		if (!is_num(*args))
-			res = 0;
-		else if (*args[0] != '\0')
-		{
-			if (has_duplicate(ft_atol(*args), args)
-				|| ft_atol(*args) > INT_MAX || ft_atol(*args) < INT_MIN)
-				res = 0;
-		}
-		args++;
-	}
+	check_arg(args, &res);
 	return (free_split(split_ptr), res);
 }

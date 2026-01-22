@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 15:26:23 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 14:40:40 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:49:31 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	update_and_push(t_stack **a, t_stack **b, t_bench *bench)
 
 void	turk_sort(t_stack **stack_a, t_stack **stack_b, t_bench *bench)
 {
-	bench->strat = ft_strdup("Turk sort / 0(n * log(n))");
+	bench->strat = "Turk sort / 0(n * log(n))";
 	while (stacksize(*stack_b) < 3)
 		pb(stack_a, stack_b, bench);
 	sort_three(stack_b, 0, bench);

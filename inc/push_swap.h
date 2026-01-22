@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:29:08 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 17:54:21 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:07:01 by mvazquez         ###   ########.fr       */
 /*   Updated: 2026/01/15 13:16:26 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -75,6 +75,7 @@ t_bench	init_bench(void);
 void	print_bench(t_bench *bench);
 void	free_split(char **strs);
 void	recursive_free(t_stack *head);
+void	free_all(t_stack *a, t_stack *b, t_config *config);
 
 // stack 
 
@@ -125,9 +126,5 @@ void	assign_target_node(t_stack **stack_a, t_stack **stack_b);
 void	assign_totop_cost(t_stack **stack_a);
 int		(*get_rot(t_stack *n, t_stack **stck, int a))(t_stack **s, t_bench *b);
 long	ft_atol(const char *nptr);
-
-// freeing
-
-void	free_all(t_stack *a, t_stack *b, t_bench *bench, t_config *config);
 
 #endif

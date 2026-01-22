@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 14:09:51 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 17:54:01 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:06:14 by mvazquez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,24 @@ void	recursive_free(t_stack *head)
 	recursive_free(head);
 }
 
-void	free_all(t_stack *a, t_stack *b, t_bench *bench, t_config *config)
+void	free_all(t_stack *a, t_stack *b, t_config *config)
 {
 	recursive_free(a);
 	recursive_free(b);
-	free(bench->strat);
 	free(config);
+}
+
+void	free_split(char **strs)
+{
+	size_t	i;
+
+	if (!strs)
+		return ;
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
 }
