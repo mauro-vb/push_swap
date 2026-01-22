@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 17:33:44 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:09:14 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -54,7 +54,10 @@ static void	sort(t_stack **a, t_stack **b, t_config *config, t_bench *bench)
 {
 	int		disorder;
 
-	disorder = compute_disorder(*a);
+	if (is_sorted(*a))
+		disorder = 0;
+	else
+		disorder = compute_disorder(*a);
 	bench->disorder = disorder;
 	if (disorder == 0)
 	{

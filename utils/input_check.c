@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 14:24:48 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 17:50:26 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:21:14 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,16 @@ int	check_args(int argc, char **argv)
 	char	**args;
 	int		res;
 
+	split_ptr = NULL;
 	if (argc == 2)
+	{
 		args = ft_split(get_input_str(argv), " \n");
+		split_ptr = args;
+	}
 	else
 		args = ++argv;
 	if (!args)
 		return (0);
-	split_ptr = args;
 	res = 1;
 	while (*args && res == 1)
 	{

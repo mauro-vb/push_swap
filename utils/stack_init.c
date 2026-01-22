@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/21 15:31:05 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/21 17:58:16 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:27:46 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,19 @@ t_stack	*init_stack(char **argv, int argc)
 	char	**split_ptr;
 	t_stack	*head;
 
+	split_ptr = NULL;
 	if (argc == 2)
+	{
 		args = ft_split(get_input_str(argv), " \n");
+		split_ptr = args;
+	}
 	else
 		args = argv + 1;
 	while (*args[0] == '\0')
 		args++;
 	head = stacknew(ft_atoi(*args));
-	split_ptr = args;
 	args++;
-	add_node(head, argv);
+	add_node(head, args);
 	index_stack(&head);
 	current_index_stack(&head);
 	return (free_split(split_ptr), head);

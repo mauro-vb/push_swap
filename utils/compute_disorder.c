@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 13:14:52 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 15:47:47 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 11:04:50 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	compute_disorder(t_stack *stack)
 	t_stack	*i;
 	t_stack	*j;
 
-	if (!stack || stack->next == stack)
+	if (!stack || stacksize(stack) < 2)
 		return (0);
 	mistakes = 0;
 	total_pairs = 0;
