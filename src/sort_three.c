@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 14:27:39 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/20 14:27:46 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:38:15 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ static void	two_action_cases(t_ops ops, t_stack **stack, t_bench *bench)
 	head_val = (*stack)->index;
 	tail_val = (*stack)->previous->index;
 	mid_val = (*stack)->next->index;
-	if (head_val > mid_val && mid_val > tail_val)
-		return ;
 	if (tail_val > head_val && tail_val > mid_val && head_val > mid_val)
 		ops.swp(stack, bench);
 	else if (head_val > tail_val && head_val > mid_val && mid_val < tail_val)
@@ -65,7 +63,7 @@ void	sort_three(t_stack **stack, int is_a, t_bench *bench)
 	head_val = (*stack)->index;
 	tail_val = (*stack)->previous->index;
 	mid_val = (*stack)->next->index;
-	if (head_val > mid_val && mid_val > tail_val)
+	if (head_val < mid_val && mid_val < tail_val)
 		return ;
 	if (tail_val > head_val && tail_val > mid_val && head_val > mid_val)
 		ops.swp(stack, bench);

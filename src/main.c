@@ -6,7 +6,7 @@
 /*   By: mvazquez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:50:29 by mvazquez          #+#    #+#             */
-/*   Updated: 2026/01/22 12:11:53 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:57:06 by mpeskov          ###   ########.fr       */
 /*   Updated: 2026/01/14 15:27:43 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -101,6 +101,8 @@ int	main(int argc, char **argv)
 	stack_a = init_stack(argv, argc);
 	if (stacksize(stack_a) == 2 && stack_a->value > stack_a->next->value)
 		sa(&stack_a, &bench);
+	if (stacksize(stack_a) == 3)
+		sort_three(&stack_a, 1, &bench);
 	stack_b = NULL;
 	sort(&stack_a, &stack_b, config, &bench);
 	if (config->bench)

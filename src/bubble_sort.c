@@ -6,7 +6,7 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 12:54:07 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/20 13:30:24 by mpeskov          ###   ########.fr       */
+/*   Updated: 2026/01/22 12:29:12 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int	is_sorted(t_stack *stack)
 	if (!stack)
 		return (1);
 	tmp = stack;
-	while (tmp->next != stack)
+	while (1)
 	{
 		if (tmp->value > (tmp->next->value))
 			return (0);
 		tmp = tmp->next;
+		if (tmp == stack)
+			break ;
 	}
 	return (1);
 }

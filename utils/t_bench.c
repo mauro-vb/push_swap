@@ -6,7 +6,7 @@
 /*   By: mpeskov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 18:23:30 by mpeskov           #+#    #+#             */
-/*   Updated: 2026/01/22 12:00:13 by mvazquez         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:42:47 by mpeskov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*get_disorder(int disorder)
 	char	*tmp2;
 
 	if (disorder == 10000)
-		return ("100.0");
+		return (ft_strdup("100.0"));
 	tmp = ft_itoa(disorder / 100);
 	tmp2 = ft_strjoin(tmp, ".");
 	free(tmp);
